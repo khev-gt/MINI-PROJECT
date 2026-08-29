@@ -32,6 +32,13 @@ int ensureCapacity(Team **teams, int *capacity, int required) {
     return 1;
 }
 
+void cleanup(Team **teams, int *size, int *capacity) {
+    free(*teams);
+    *teams = NULL;
+    *size = 0;
+    *capacity = 0;
+}
+
 int main() {
     Team *teams = NULL;
     int size = 0;
@@ -45,5 +52,8 @@ int main() {
     if (ensureCapacity(&teams, &capacity, 3)) {
         printf("After requesting 3 teams: size = %d, capacity = %d\n", size, capacity);
     }
+    cleanup(&teams, &size, &capacity);
+
+    printf("After cleanup: size = %d, capacity = %d, teams = %p\n", size, capacity, (void *)teams);
     return 0;
 }
