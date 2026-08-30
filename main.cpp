@@ -128,42 +128,32 @@ int findTeamIndex(int id) {
 // Add Team
 // =========================
 void addTeam(int id, string name) {
-    // ===== YOUR EXISTING VALIDATION =====
     if (id <= 0) {
         cout << "Error: Team ID must be positive.\n";
         return;
     }
-    
+    if (id > 99999) {
+        cout << "Error: Team ID too large (max 99999).\n";
+        return;
+    }
     if (name.empty()) {
         cout << "Error: Team name cannot be empty.\n";
         return;
     }
-    
     if (name.length() >= 40) {
-        cout << "Error: Team name too long (maximum 39 characters).\n";
+        cout << "Error: Team name too long (max 39 characters).\n";
         return;
     }
-    
-    // ===== ADD THESE NEW CHECKS =====
-    // Check for pipe character (file separator)
     if (name.find('|') != string::npos) {
         cout << "Error: Team name cannot contain '|' character.\n";
         return;
     }
+    // ===== END VALIDATION =====
     
-    // Check ID is reasonable (not too large)
-    if (id > 99999) {
-        cout << "Error: Team ID too large (maximum 99999).\n";
-        return;
-    }
-    // ===== END NEW CHECKS =====
-    
-    // ===== EXISTING CODE (unchanged) =====
     if (findTeamIndex(id) != -1) {
         cout << "Team ID already exists.\n";
         return;
     }
-
     if (!ensureCapacity(&teams, &capacity, teamSize + 1)) {
         return;
     }
@@ -284,27 +274,21 @@ void loadTeams() {
         return;
     }
 
-    int id;
-    int score;
-    int missions;
+    int id, score, missions;
     char name[40];
     int lineNum = 0;
 
-    while (fscanf(
-        file,
-        "%d|%39[^|]|%d|%d\n",
-        &id,
-        name,
-        &score,
-        &missions
-    ) == 4) {
-        
+    while (fscanf(file, "%d|%39[^|]|%d|%d\n", &id, name, &score, &missions) == 4) {
         lineNum++;
         bool valid = true;
         
-        // ===== YOUR EXISTING VALIDATION =====
+        // ===== ADD THIS VALIDATION =====
         if (id <= 0) {
             cout << "Line " << lineNum << ": Rejected - ID must be positive\n";
+            valid = false;
+        }
+        if (id > 99999) {
+            cout << "Line " << lineNum << ": Rejected - ID too large (max 99999)\n";
             valid = false;
         }
         if (strlen(name) == 0) {
@@ -315,6 +299,10 @@ void loadTeams() {
             cout << "Line " << lineNum << ": Rejected - Name too long\n";
             valid = false;
         }
+        if (strchr(name, '|') != NULL) {
+            cout << "Line " << lineNum << ": Rejected - Name cannot contain '|'\n";
+            valid = false;
+        }
         if (score < 0) {
             cout << "Line " << lineNum << ": Rejected - Score cannot be negative\n";
             valid = false;
@@ -323,48 +311,25 @@ void loadTeams() {
             cout << "Line " << lineNum << ": Rejected - Missions cannot be negative\n";
             valid = false;
         }
-        
-        // ===== ADD THESE NEW CHECKS =====
-        // Check for pipe character in name (file separator)
-        if (strchr(name, '|') != NULL) {
-            cout << "Line " << lineNum << ": Rejected - Name cannot contain '|'\n";
-            valid = false;
-        }
-        
-        // Check ID is reasonable (not too large)
-        if (id > 99999) {
-            cout << "Line " << lineNum << ": Rejected - ID too large (max 99999)\n";
-            valid = false;
-        }
-        // ===== END NEW CHECKS =====
-        
-        // Check duplicate ID (only if valid so far)
         if (valid && findTeamIndex(id) != -1) {
             cout << "Line " << lineNum << ": Rejected - Duplicate ID " << id << "\n";
             valid = false;
         }
+        // ===== END VALIDATION =====
         
-        // ONLY commit if valid
+        // Only commit if valid
         if (valid) {
             if (!ensureCapacity(&teams, &capacity, teamSize + 1)) {
                 break;
             }
-
             teams[teamSize].id = id;
-            strncpy(
-                teams[teamSize].name,
-                name,
-                sizeof(teams[teamSize].name) - 1
-            );
-            teams[teamSize].name[
-                sizeof(teams[teamSize].name) - 1
-            ] = '\0';
+            strncpy(teams[teamSize].name, name, sizeof(teams[teamSize].name) - 1);
+            teams[teamSize].name[sizeof(teams[teamSize].name) - 1] = '\0';
             teams[teamSize].score = score;
             teams[teamSize].missions = missions;
             teamSize++;
         }
     }
-
     fclose(file);
 }
 
