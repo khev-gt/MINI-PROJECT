@@ -1,3 +1,9 @@
+//Team members:
+//1.Long Thina role Test Captain
+//2.Kheng Kevin 
+//3.Chheng Longheng role Memory Guardian
+//4.Leng Sakda
+//5.Lim Chanmonyroth role Record Architecture
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -128,50 +134,49 @@ int findTeamIndex(int id) {
 // Add Team
 // =========================
 void addTeam(int id, string name) {
-
-        // ===== ADD THIS VALIDATION BLOCK =====
     if (id <= 0) {
         cout << "Error: Team ID must be positive.\n";
         return;
     }
-    
+    if (id > 99999) {
+        cout << "Error: Team ID too large (max 99999).\n";
+        return;
+    }
     if (name.empty()) {
         cout << "Error: Team name cannot be empty.\n";
         return;
     }
-    
     if (name.length() >= 40) {
-        cout << "Error: Team name too long (maximum 39 characters).\n";
+        cout << "Error: Team name too long (max 39 characters).\n";
         return;
     }
-
+    if (name.find('|') != string::npos) {
+        cout << "Error: Team name cannot contain '|' character.\n";
+        return;
+    }
+    // ===== END VALIDATION =====
+    
     if (findTeamIndex(id) != -1) {
         cout << "Team ID already exists.\n";
         return;
     }
-
     if (!ensureCapacity(&teams, &capacity, teamSize + 1)) {
         return;
     }
 
     teams[teamSize].id = id;
-
     strncpy(
         teams[teamSize].name,
         name.c_str(),
         sizeof(teams[teamSize].name) - 1
     );
-
     teams[teamSize].name[
         sizeof(teams[teamSize].name) - 1
     ] = '\0';
-
     teams[teamSize].score = 0;
     teams[teamSize].missions = 0;
-
     teamSize++;
 }
-
 
 // =========================
 // Record Mission
@@ -192,6 +197,8 @@ void recordMission(int id, int points) {
 
     teams[index].score += points;
     teams[index].missions++;
+
+    cout << "Mission points recorded.\n";
 }
 
 
@@ -240,35 +247,23 @@ void sortLeaderboard() {
 // Display Leaderboard
 // =========================
 void displayTeams() {
-
     if (teamSize == 0) {
         cout << "No teams registered yet.\n";
         return;
     }
 
-    cout << "\nRank  ID    Name                         Score  Missions\n";
-    cout << "----  ----  ---------------------------  -----  --------\n";
+    // Sort before displaying
+    sortLeaderboard();
 
+    cout << "\n===== LEADERBOARD =====\n";
+    
     for (int i = 0; i < teamSize; i++) {
-
-        cout << i + 1 << "     ";
-        cout << teams[i].id << "     ";
-
-        cout.width(27);
-        cout.setf(ios::left);
-        cout << teams[i].name;
-
-        cout.unsetf(ios::left);
-
-        cout << "  ";
-        cout.width(5);
-        cout << teams[i].score;
-
-        cout << "  ";
-        cout << teams[i].missions;
-
-        cout << "\n";
+        cout << teams[i].id << "|" 
+             << teams[i].name << "|" 
+             << teams[i].score << "|" 
+             << teams[i].missions << "\n";
     }
+    cout << "\n";
 }
 
 
@@ -281,78 +276,62 @@ void loadTeams() {
         return;
     }
 
-    int id;
-    int score;
-    int missions;
+    int id, score, missions;
     char name[40];
-    int lineNum = 0;  // Track which line we're reading
+    int lineNum = 0;
 
-    while (fscanf(
-        file,
-        "%d|%39[^|]|%d|%d\n",
-        &id,
-        name,
-        &score,
-        &missions
-    ) == 4) {
-        
+    while (fscanf(file, "%d|%39[^|]|%d|%d\n", &id, name, &score, &missions) == 4) {
         lineNum++;
-        bool valid = true;  // Assume valid, check for problems
+        bool valid = true;
         
-        // ===== ADD VALIDATION (same as addTeam!) =====
+        // ===== ADD THIS VALIDATION =====
         if (id <= 0) {
-            cout << "Line " << lineNum << ": Rejected - ID must be positive (" << id << ")\n";
+            cout << "Line " << lineNum << ": Rejected - ID must be positive\n";
             valid = false;
         }
-        
+        if (id > 99999) {
+            cout << "Line " << lineNum << ": Rejected - ID too large (max 99999)\n";
+            valid = false;
+        }
         if (strlen(name) == 0) {
             cout << "Line " << lineNum << ": Rejected - Name cannot be empty\n";
             valid = false;
         }
-        
         if (strlen(name) >= 40) {
             cout << "Line " << lineNum << ": Rejected - Name too long\n";
             valid = false;
         }
-        
+        if (strchr(name, '|') != NULL) {
+            cout << "Line " << lineNum << ": Rejected - Name cannot contain '|'\n";
+            valid = false;
+        }
         if (score < 0) {
-            cout << "Line " << lineNum << ": Rejected - Score cannot be negative (" << score << ")\n";
+            cout << "Line " << lineNum << ": Rejected - Score cannot be negative\n";
             valid = false;
         }
-        
         if (missions < 0) {
-            cout << "Line " << lineNum << ": Rejected - Missions cannot be negative (" << missions << ")\n";
+            cout << "Line " << lineNum << ": Rejected - Missions cannot be negative\n";
             valid = false;
         }
-        
-        // Check duplicate ID (only if valid so far)
         if (valid && findTeamIndex(id) != -1) {
             cout << "Line " << lineNum << ": Rejected - Duplicate ID " << id << "\n";
             valid = false;
         }
         // ===== END VALIDATION =====
         
-        // ONLY commit if valid
+        // Only commit if valid
         if (valid) {
             if (!ensureCapacity(&teams, &capacity, teamSize + 1)) {
                 break;
             }
-
             teams[teamSize].id = id;
-            strncpy(
-                teams[teamSize].name,
-                name,
-                sizeof(teams[teamSize].name) - 1
-            );
-            teams[teamSize].name[
-                sizeof(teams[teamSize].name) - 1
-            ] = '\0';
+            strncpy(teams[teamSize].name, name, sizeof(teams[teamSize].name) - 1);
+            teams[teamSize].name[sizeof(teams[teamSize].name) - 1] = '\0';
             teams[teamSize].score = score;
             teams[teamSize].missions = missions;
             teamSize++;
         }
     }
-
     fclose(file);
 }
 
@@ -435,7 +414,6 @@ int main() {
 
             recordMission(id, points);
 
-            cout << "Mission points recorded.\n";
 
         }
         else if (choice == 3) {
