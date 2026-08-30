@@ -1,3 +1,9 @@
+//Team members:
+//1.Long Thina role Test Captain
+//2.Kheng Kevin 
+//3.Chheng Longheng role Memory Guardian
+//4.Leng Sakda
+//5.Lim Chanmonyroth role Record Architecture
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -250,16 +256,12 @@ void displayTeams() {
     sortLeaderboard();
 
     cout << "\n===== LEADERBOARD =====\n";
-    printf("%-6s %-6s %-27s %-8s %-8s\n", "Rank", "ID", "Name", "Score", "Missions");
-    printf("%-6s %-6s %-27s %-8s %-8s\n", "----", "----", "---------------------------", "-----", "--------");
     
     for (int i = 0; i < teamSize; i++) {
-        printf("%-6d %-6d %-27s %-8d %-8d\n", 
-               i + 1,
-               teams[i].id,
-               teams[i].name,
-               teams[i].score,
-               teams[i].missions);
+        cout << teams[i].id << "|" 
+             << teams[i].name << "|" 
+             << teams[i].score << "|" 
+             << teams[i].missions << "\n";
     }
     cout << "\n";
 }
