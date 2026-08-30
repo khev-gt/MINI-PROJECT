@@ -129,6 +129,22 @@ int findTeamIndex(int id) {
 // =========================
 void addTeam(int id, string name) {
 
+        // ===== ADD THIS VALIDATION BLOCK =====
+    if (id <= 0) {
+        cout << "Error: Team ID must be positive.\n";
+        return;
+    }
+    
+    if (name.empty()) {
+        cout << "Error: Team name cannot be empty.\n";
+        return;
+    }
+    
+    if (name.length() >= 40) {
+        cout << "Error: Team name too long (maximum 39 characters).\n";
+        return;
+    }
+
     if (findTeamIndex(id) != -1) {
         cout << "Team ID already exists.\n";
         return;
@@ -260,9 +276,7 @@ void displayTeams() {
 // Load Teams
 // =========================
 void loadTeams() {
-
     FILE *file = fopen("teams.txt", "r");
-
     if (file == NULL) {
         return;
     }
@@ -271,6 +285,7 @@ void loadTeams() {
     int score;
     int missions;
     char name[40];
+    int lineNum = 0;  // Track which line we're reading
 
     while (fscanf(
         file,
@@ -280,27 +295,62 @@ void loadTeams() {
         &score,
         &missions
     ) == 4) {
-
-        if (!ensureCapacity(&teams, &capacity, teamSize + 1)) {
-            break;
+        
+        lineNum++;
+        bool valid = true;  // Assume valid, check for problems
+        
+        // ===== ADD VALIDATION (same as addTeam!) =====
+        if (id <= 0) {
+            cout << "Line " << lineNum << ": Rejected - ID must be positive (" << id << ")\n";
+            valid = false;
         }
+        
+        if (strlen(name) == 0) {
+            cout << "Line " << lineNum << ": Rejected - Name cannot be empty\n";
+            valid = false;
+        }
+        
+        if (strlen(name) >= 40) {
+            cout << "Line " << lineNum << ": Rejected - Name too long\n";
+            valid = false;
+        }
+        
+        if (score < 0) {
+            cout << "Line " << lineNum << ": Rejected - Score cannot be negative (" << score << ")\n";
+            valid = false;
+        }
+        
+        if (missions < 0) {
+            cout << "Line " << lineNum << ": Rejected - Missions cannot be negative (" << missions << ")\n";
+            valid = false;
+        }
+        
+        // Check duplicate ID (only if valid so far)
+        if (valid && findTeamIndex(id) != -1) {
+            cout << "Line " << lineNum << ": Rejected - Duplicate ID " << id << "\n";
+            valid = false;
+        }
+        // ===== END VALIDATION =====
+        
+        // ONLY commit if valid
+        if (valid) {
+            if (!ensureCapacity(&teams, &capacity, teamSize + 1)) {
+                break;
+            }
 
-        teams[teamSize].id = id;
-
-        strncpy(
-            teams[teamSize].name,
-            name,
-            sizeof(teams[teamSize].name) - 1
-        );
-
-        teams[teamSize].name[
-            sizeof(teams[teamSize].name) - 1
-        ] = '\0';
-
-        teams[teamSize].score = score;
-        teams[teamSize].missions = missions;
-
-        teamSize++;
+            teams[teamSize].id = id;
+            strncpy(
+                teams[teamSize].name,
+                name,
+                sizeof(teams[teamSize].name) - 1
+            );
+            teams[teamSize].name[
+                sizeof(teams[teamSize].name) - 1
+            ] = '\0';
+            teams[teamSize].score = score;
+            teams[teamSize].missions = missions;
+            teamSize++;
+        }
     }
 
     fclose(file);
