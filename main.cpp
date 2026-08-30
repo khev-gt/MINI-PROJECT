@@ -1,16 +1,44 @@
 //Team members:
 //1.Long Thina role Test Captain
-//2.Kheng Kevin 
+//2.Kheng Khevin role Integration Captain
 //3.Chheng Longheng role Memory Guardian
-//4.Leng Sakda
+//4.Leng Sakda role UX
 //5.Lim Chanmonyroth role Record Architecture
+
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
 #include <string>
 #include <cstring>
 
-using namespace std;
+using namespace std; 
+
+// ====================================
+// Helper: Check if name contains only valid characters
+// ====================================
+bool isValidName(const string& name) {
+    // Only allow: letters, numbers, spaces, hyphens, apostrophes, periods, commas, underscores
+    for (char c : name) {
+        // Check if character is valid
+        bool isValid = (c >= 'A' && c <= 'Z') ||
+                       (c >= 'a' && c <= 'z') ||
+                       (c >= '0' && c <= '9') ||
+                       c == ' ' ||
+                       c == '-' ||
+                       c == '_' ||
+                       c == '.' ||
+                       c == ',' ||
+                       c == ';' ||
+                       c == ':' ||
+                       c == '(' ||
+                       c == ')';
+        
+        if (!isValid) {
+            return false;  // Invalid character found
+        }
+    }
+    return true;  // All characters are valid
+}
 
 // =========================
 // Team Structure
@@ -154,6 +182,10 @@ void addTeam(int id, string name) {
         cout << "Error: Team name cannot contain '|' character.\n";
         return;
     }
+    if (!isValidName(name)) {
+        cout << "Error: Team name contains invalid characters. Use letters, numbers, spaces, or basic punctuation.\n";
+        return;
+    }
     // ===== END VALIDATION =====
     
     if (findTeamIndex(id) != -1) {
@@ -255,7 +287,7 @@ void displayTeams() {
     // Sort before displaying
     sortLeaderboard();
 
-    cout << "\n===== LEADERBOARD =====\n";
+    cout << "\n";  // Add blank line before leaderboard
     
     for (int i = 0; i < teamSize; i++) {
         cout << teams[i].id << "|" 
@@ -263,7 +295,6 @@ void displayTeams() {
              << teams[i].score << "|" 
              << teams[i].missions << "\n";
     }
-    cout << "\n";
 }
 
 
@@ -284,7 +315,6 @@ void loadTeams() {
         lineNum++;
         bool valid = true;
         
-        // ===== ADD THIS VALIDATION =====
         if (id <= 0) {
             cout << "Line " << lineNum << ": Rejected - ID must be positive\n";
             valid = false;
@@ -305,6 +335,14 @@ void loadTeams() {
             cout << "Line " << lineNum << ": Rejected - Name cannot contain '|'\n";
             valid = false;
         }
+        
+        // Check for invalid characters in name
+        string nameStr(name);
+        if (!isValidName(nameStr)) {
+            cout << "Line " << lineNum << ": Rejected - Name contains invalid characters\n";
+            valid = false;
+        }
+        
         if (score < 0) {
             cout << "Line " << lineNum << ": Rejected - Score cannot be negative\n";
             valid = false;
@@ -317,7 +355,6 @@ void loadTeams() {
             cout << "Line " << lineNum << ": Rejected - Duplicate ID " << id << "\n";
             valid = false;
         }
-        // ===== END VALIDATION =====
         
         // Only commit if valid
         if (valid) {
@@ -334,7 +371,6 @@ void loadTeams() {
     }
     fclose(file);
 }
-
 
 // =========================
 // Save Teams
