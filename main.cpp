@@ -413,13 +413,23 @@ int main() {
 
         UX();
 
-        cin >> choice;
+        string choiceInput;
+        getline(cin >> ws, choiceInput);
 
-        // Catch non-numeric inputs so the program doesn't infinitely loop
-        if (cin.fail()) {
-            cin.clear();             // Clear the error state
-            cin.ignore(1000, '\n');  // Flush the bad input out of the buffer
-            choice = 0;              // Force it to hit the "Invalid choice" else-block
+        try {
+            size_t pos;
+            choice = stoi(choiceInput, &pos);
+
+            if (pos != choiceInput.length()) {
+                cout << "Invalid choice. Please enter 1-6.\n";
+                choice = 0;
+                continue;
+            }
+        }
+        catch (...) {
+            cout << "Invalid choice. Please enter 1-6.\n";
+            choice = 0;
+            continue;
         }
 
         if (choice == 1) {
@@ -427,11 +437,26 @@ int main() {
             int id;
             string name;
 
-            cout << "Enter team ID: ";
-            cin >> id;
+           cout << "Enter team ID: ";
+
+            string idInput;
+            getline(cin >> ws, idInput);
+
+            try {
+                size_t pos;
+                id = stoi(idInput, &pos);
+
+                if (pos != idInput.length()) {
+                    cout << "Error: Team ID must be a whole number.\n";
+                    continue;
+                }
+            }
+            catch (...) {
+                cout << "Error: Team ID must be a valid number.\n";
+                continue;
+            }
 
             cout << "Enter team name: ";
-            cin.ignore();
             getline(cin, name);
 
             addTeam(id, name);
