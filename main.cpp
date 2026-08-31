@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <string>
 #include <cstring>
+#include <iomanip>
 
 using namespace std; 
 
@@ -287,13 +288,29 @@ void displayTeams() {
     // Sort before displaying
     sortLeaderboard();
 
-    cout << "\n";  // Add blank line before leaderboard
-    
+    cout << "\n";
+    cout << left
+         << setw(6) << "Rank"
+         << setw(6) << "ID"
+         << setw(29) << "Name"
+         << setw(7) << "Score"
+         << "Missions\n";
+
+    cout << left
+         << setw(6) << "----"
+         << setw(6) << "----"
+         << setw(29) << "---------------------------"
+         << setw(7) << "-----"
+         << "--------\n";
+
     for (int i = 0; i < teamSize; i++) {
-        cout << teams[i].id << "|" 
-             << teams[i].name << "|" 
-             << teams[i].score << "|" 
-             << teams[i].missions << "\n";
+        cout << left
+             << setw(6) << (i + 1)
+             << setw(6) << teams[i].id
+             << setw(29) << teams[i].name
+             << setw(7) << teams[i].score
+             << teams[i].missions
+             << "\n";
     }
 }
 
@@ -466,23 +483,66 @@ int main() {
 
             int id;
             int points;
+            string idInput;
+            string pointsInput;
 
             cout << "Enter team ID: ";
-            cin >> id;
+            getline(cin >> ws, idInput);
+
+            try {
+                size_t pos;
+                id = stoi(idInput, &pos);
+
+                if (pos != idInput.length()) {
+                    cout << "Error: Team ID must be a whole number.\n";
+                    continue;
+                }
+            }
+            catch (...) {
+                cout << "Error: Team ID must be a valid number.\n";
+                continue;
+            }
 
             cout << "Enter mission points earned (1-100): ";
-            cin >> points;
+            getline(cin >> ws, pointsInput);
+
+            try {
+                size_t pos;
+                points = stoi(pointsInput, &pos);
+
+                if (pos != pointsInput.length()) {
+                    cout << "Invalid points. Enter 1-100.\n";
+                    continue;
+                }
+            }
+            catch (...) {
+                cout << "Invalid points. Enter 1-100.\n";
+                continue;
+            }
 
             recordMission(id, points);
-
-
         }
         else if (choice == 3) {
 
             int id;
+            string idInput;
 
             cout << "Enter team ID: ";
-            cin >> id;
+            getline(cin >> ws, idInput);
+
+            try {
+                size_t pos;
+                id = stoi(idInput, &pos);
+
+                if (pos != idInput.length()) {
+                    cout << "Error: Team ID must be a whole number.\n";
+                    continue;
+                }
+            }
+            catch (...) {
+                cout << "Error: Team ID must be a valid number.\n";
+                continue;
+            }
 
             int index = findTeamIndex(id);
 
@@ -496,14 +556,28 @@ int main() {
                 cout << "Score: " << teams[index].score << "\n";
                 cout << "Missions: " << teams[index].missions << "\n";
             }
-
         }
         else if (choice == 4) {
 
             int id;
+            string idInput;
 
             cout << "Enter team ID: ";
-            cin >> id;
+            getline(cin >> ws, idInput);
+
+            try {
+                size_t pos;
+                id = stoi(idInput, &pos);
+
+                if (pos != idInput.length()) {
+                    cout << "Error: Team ID must be a whole number.\n";
+                    continue;
+                }
+            }
+            catch (...) {
+                cout << "Error: Team ID must be a valid number.\n";
+                continue;
+            }
 
             int before = teamSize;
 
