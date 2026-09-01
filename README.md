@@ -117,11 +117,13 @@ When valid points are entered:
 
 Example:
 
+```text
 Current Score: 50
 Mission Points: 30
 
 New Score: 80
 Missions: +1
+```
 
 ---
 
@@ -139,6 +141,7 @@ Status
 
 Example:
 
+```text
 ========================================
              TEAM PROFILE
 ========================================
@@ -148,6 +151,7 @@ Total Score  : 99
 Missions     : 1
 Status       : ACTIVE
 ========================================
+```
 
 If the team does not exist, the system displays:
 
@@ -184,6 +188,7 @@ Total number of teams
 
 Example:
 
+```text
 ==============================================================
                      LEADERBOARD
 ==============================================================
@@ -195,6 +200,7 @@ Rank     ID       Team Name              Score    Missions
 ==============================================================
  Total Teams: 3
 ==============================================================
+```
 
 If there are no registered teams, the system displays:
 
@@ -216,6 +222,7 @@ Before the program terminates, allocated memory is also released.
 
 When the program starts, the main menu is displayed:
 
+```text
 ===== Campus Mission Tracker =====
 1. Register a team
 2. Record mission points
@@ -224,29 +231,35 @@ When the program starts, the main menu is displayed:
 5. Show leaderboard
 6. Save and exit
 Enter your choice:
+```
 
 #### Menu Options
-Option	Operation	Description
-1	Register a team	Add a new team
-2	Record mission points	Add mission points to a team
-3	Find a team	Search and display team information
-4	Remove a team	Delete a team
-5	Show leaderboard	Display teams ranked by score
-6	Save and exit	Save data and close the program
+
+| Option | Operation | Description |
+| --- | --- | --- |
+| 1 | Register a team | Add a new team |
+| 2 | Record mission points | Add mission points to a team |
+| 3 | Find a team | Search and display team information |
+| 4 | Remove a team | Delete a team |
+| 5 | Show leaderboard | Display teams ranked by score |
+| 6 | Save and exit | Save data and close the program |
 
 ### Team Data Structure
 
 The program uses a Team structure to store team information.
 
+```cpp
 typedef struct {
     int id;
     char name[40];
     int score;
     int missions;
 } Team;
+```
 
 Each team contains four main pieces of information:
 
+```text
 ID
 int id;
 
@@ -268,15 +281,19 @@ Missions
 int missions;
 
 Stores the number of missions completed or recorded.
+```
 
 ### Team Registration
 
 The registration process is handled by:
 
+```cpp
 addTeam(int id, string name)
+```
 
 The function performs several validation checks before adding a team.
 
+```text
 Registration process
 Enter Team ID
        ↓
@@ -297,6 +314,7 @@ Set Score = 0
 Set Missions = 0
        ↓
 Register Successfully
+```
 
 A team cannot be registered if its ID already exists.
 
@@ -304,7 +322,9 @@ A team cannot be registered if its ID already exists.
 
 Mission points are handled by:
 
+```cpp
 recordMission(int id, int points)
+```
 
 The system first searches for the team.
 
@@ -312,12 +332,16 @@ If the team exists, the points are validated.
 
 Valid points must satisfy:
 
+```text
 1 <= points <= 100
+```
 
 After successful validation:
 
+```cpp
 teams[index].score += points;
 teams[index].missions++;
+```
 
 Therefore, both the score and mission count are updated.
 
@@ -325,7 +349,9 @@ Therefore, both the score and mission count are updated.
 
 The system searches for teams using:
 
+```cpp
 findTeamIndex(int id)
+```
 
 The function checks each team until it finds a matching ID.
 
@@ -333,7 +359,9 @@ If a matching team is found, the function returns its array index.
 
 If no team is found:
 
+```cpp
 return -1;
+```
 
 The main program then displays:
 
@@ -343,7 +371,9 @@ Team not found.
 
 Team deletion is handled by:
 
+```cpp
 deleteTeam(int id)
+```
 
 First, the system searches for the team.
 
@@ -351,6 +381,7 @@ After finding the team, the records after it are shifted one position to the lef
 
 Conceptually:
 
+```text
 Before:
 
 [Team A] [Team B] [Team C] [Team D]
@@ -360,6 +391,7 @@ Remove Team B
 After:
 
 [Team A] [Team C] [Team D]
+```
 
 The variable teamSize is then reduced by one.
 
@@ -367,7 +399,9 @@ The variable teamSize is then reduced by one.
 
 The leaderboard is sorted using:
 
+```cpp
 sortLeaderboard()
+```
 
 The system compares team scores and moves the team with the higher score toward the beginning.
 
@@ -375,19 +409,25 @@ The sorting process uses nested loops and swaps adjacent Team records.
 
 The comparison is:
 
+```cpp
 if (teams[j].score < teams[j + 1].score)
+```
 
 Therefore, the leaderboard is arranged in:
 
+```text
 Highest Score
       ↓
 Lower Score
       ↓
 Lowest Score
+```
 
 The leaderboard is displayed through:
 
+```cpp
 displayTeams()
+```
 
 The display includes a formatted header, ranking, team information, and total team count.
 
@@ -397,6 +437,7 @@ The Find Team feature provides a detailed profile for an individual team.
 
 The current profile format is:
 
+```text
 ========================================
              TEAM PROFILE
 ========================================
@@ -406,18 +447,23 @@ Total Score  : 99
 Missions     : 1
 Status       : ACTIVE
 ========================================
+```
 
 #### Profile Information
-Field	Meaning
-Team ID	Unique identifier of the team
-Team Name	Registered team name
-Total Score	Total mission points earned
-Missions	Number of recorded missions
-Status	Current display status
+
+| Field | Meaning |
+| --- | --- |
+| Team ID | Unique identifier of the team |
+| Team Name | Registered team name |
+| Total Score | Total mission points earned |
+| Missions | Number of recorded missions |
+| Status | Current display status |
 
 The current system displays:
 
+```text
 Status : ACTIVE
+```
 
 when a registered team is found.
 
@@ -489,7 +535,9 @@ Invalid points. Enter 1-100.
 
 The project demonstrates dynamic memory management using:
 
+```cpp
 Team *teams = NULL;
+```
 
 The system does not rely on a fixed-size team array.
 
@@ -497,22 +545,29 @@ Instead, memory is dynamically allocated and expanded when more space is require
 
 The main function responsible for this is:
 
+```cpp
 ensureCapacity()
+```
 
 #### Capacity Management
 
 The initial capacity is:
 
+```text
 0
+```
 
 When the first team is added, the capacity becomes:
 
+```text
 2
+```
 
 When the current capacity is not enough, it is doubled.
 
 Example:
 
+```text
 0
  ↓
 2
@@ -524,6 +579,7 @@ Example:
 16
  ↓
 32
+```
 
 This allows the system to support a changing number of teams without defining a fixed maximum team count in the program.
 
@@ -531,7 +587,9 @@ This allows the system to support a changing number of teams without defining a 
 
 The program uses:
 
+```cpp
 realloc()
+```
 
 to increase the memory area when necessary.
 
@@ -543,15 +601,21 @@ Memory allocation failed.
 
 Before the program terminates, the allocated memory is released using:
 
+```cpp
 cleanup(&teams, &teamSize, &capacity);
+```
 
 Inside the cleanup function:
 
+```cpp
 free(*teams_ptr);
+```
 
 The pointer is then reset to:
 
+```cpp
 NULL
+```
 
 and the size and capacity are reset to zero.
 
@@ -561,7 +625,9 @@ This prevents allocated memory from remaining unnecessarily after the program fi
 
 The system uses a text file named:
 
+```text
 teams.txt
+```
 
 The file is used for persistent storage.
 
@@ -571,11 +637,15 @@ This means that team information can remain available after the program is close
 
 When the program starts, it calls:
 
+```cpp
 loadTeams();
+```
 
 The function attempts to open:
 
+```text
 teams.txt
+```
 
 in read mode.
 
@@ -589,15 +659,21 @@ Invalid records are rejected.
 
 When the user selects:
 
+```text
 6. Save and exit
+```
 
 the program calls:
 
+```cpp
 saveTeams();
+```
 
 The team information is written to:
 
+```text
 teams.txt
+```
 
 The saved information includes:
 
@@ -610,19 +686,25 @@ Missions
 
 Each team is stored in teams.txt using the following format:
 
+```text
 ID|TeamName|Score|Missions
+```
 
 Example:
 
+```text
 101|team 1|99|1
 102|team 2|80|1
 103|team 3|50|1
+```
 
 The | character separates the four fields.
 
 Therefore, team names are not allowed to contain:
 
+```text
 |
+```
 
 This prevents the stored file format from becoming ambiguous.
 
@@ -630,6 +712,7 @@ This prevents the stored file format from becoming ambiguous.
 
 The overall program works as follows:
 
+```text
 START
   |
   v
@@ -685,17 +768,20 @@ Display Main Menu
              |
              v
             END
+```
 
 ## Project Structure
 
 The project contains the following important files:
 
+```text
 MINI-PROJECT/
 │
 ├── main.cpp
 ├── teams.txt
 ├── test-evidence.md
 └── README.md
+```
 
 #### main.cpp
 
@@ -723,9 +809,11 @@ Stores persistent team data.
 
 Example:
 
+```text
 101|team 1|99|1
 102|team 2|80|1
 103|team 3|50|1
+```
 
 #### test-evidence.md
 
@@ -741,6 +829,7 @@ Contains project documentation, system explanation, features, instructions, test
 
 The program displays:
 
+```text
 ===== Campus Mission Tracker =====
 1. Register a team
 2. Record mission points
@@ -749,54 +838,73 @@ The program displays:
 5. Show leaderboard
 6. Save and exit
 Enter your choice:
+```
+
 ### Step 2 — Register a Team
 
 Select:
 
+```text
 1
+```
 
 Enter:
 
+```text
 Enter team ID: 101
 Enter team name: team 1
+```
 
 The system registers the team.
 
 Initial information:
 
+```text
 ID: 101
 Name: team 1
 Score: 0
 Missions: 0
+```
 
 ### Step 3 — Record Mission Points
 
 Select:
 
+```text
 2
+```
 
 Enter:
 
+```text
 Enter team ID: 101
 Enter mission points earned (1-100): 99
+```
 
 The team becomes:
 
+```text
 Score: 99
 Missions: 1
+```
 
 ### Step 4 — Find the Team
 
 Select:
 
+```text
 3
+```
 
 Enter:
 
+```text
 Enter team ID: 101
+```
 
 The system displays:
 
+```text
 ========================================
              TEAM PROFILE
 ========================================
@@ -806,12 +914,15 @@ Total Score  : 99
 Missions     : 1
 Status       : ACTIVE
 ========================================
+```
 
 ### Step 5 — View Leaderboard
 
 Select:
 
+```text
 5
+```
 
 The system sorts the teams by score and displays the leaderboard.
 
@@ -819,7 +930,9 @@ The system sorts the teams by score and displays the leaderboard.
 
 Select:
 
+```text
 6
+```
 
 The program saves the current data to:
 
@@ -833,6 +946,7 @@ Data saved. Goodbye!
 
 For three teams, the leaderboard can look like:
 
+```text
 ==============================================================
                      LEADERBOARD
 ==============================================================
@@ -844,6 +958,7 @@ Rank     ID       Team Name              Score    Missions
 ==============================================================
  Total Teams: 3
 ==============================================================
+```
 
 The ranking is based on total score.
 
@@ -851,6 +966,7 @@ The ranking is based on total score.
 
 When a valid team ID is found:
 
+```text
 ========================================
              TEAM PROFILE
 ========================================
@@ -860,6 +976,7 @@ Total Score  : 99
 Missions     : 1
 Status       : ACTIVE
 ========================================
+```
 
 When an invalid or unknown ID is entered:
 
@@ -873,100 +990,138 @@ The system should be tested using both valid and invalid inputs.
 
 Input:
 
+```text
 ID: 101
 Name: team 1
+```
 
 Expected result:
 
+```text
 Team registered successfully.
+```
 
 ### Test Case 2 — Duplicate Team ID
 
 Input:
 
+```text
 ID: 101
+```
 
 when ID 101 already exists.
 
 Expected result:
 
+```text
 Team ID already exists.
+```
 
 ### Test Case 3 — Invalid Team ID
 
 Input:
 
+```text
 -1
+```
 
 Expected result:
 
+```text
 Error: Team ID must be positive.
+```
 
 ### Test Case 4 — Team ID Too Large
 
 Input:
 
+```text
 100000
+```
 
 Expected result:
 
+```text
 Error: Team ID too large (max 99999).
+```
 
 ### Test Case 5 — Invalid Mission Points
 
 Input:
 
+```text
 0
+```
 
 or:
 
+```text
 101
+```
 
 Expected result:
 
+```text
 Invalid points. Enter 1-100.
+```
 
 ### Test Case 6 — Find Existing Team
 
 Input:
 
+```text
 101
+```
 
 Expected result:
 
+```text
 TEAM PROFILE
 
 with the team's ID, name, score, missions, and status.
+```
 
 ### Test Case 7 — Find Non-existing Team
 
 Input:
 
+```text
 999
+```
 
 Expected result:
 
+```text
 Team not found.
+```
 
 ### Test Case 8 — Remove Existing Team
 
 Input:
 
+```text
 101
+```
 
 Expected result:
 
+```text
 Team removed.
+```
 
 ### Test Case 9 — Remove Non-existing Team
 
 Input:
 
+```text
 999
+```
 
 Expected result:
 
+```text
 Team not found.
+```
 
 ### Test Case 10 — Leaderboard
 
@@ -974,24 +1129,32 @@ Register multiple teams with different scores.
 
 Expected result:
 
+```text
 Highest score appears first.
 Lower scores appear below.
 Rank numbers are displayed.
 Total team count is displayed.
+```
 
 ### Test Case 11 — Save Data
 
 Select:
 
+```text
 6
+```
 
 Expected result:
 
+```text
 Data saved. Goodbye!
+```
 
 The information should be written to:
 
+```text
 teams.txt
+```
 
 ### Test Case 12 — Load Saved Data
 
@@ -999,9 +1162,11 @@ Run the program again after saving.
 
 Expected result:
 
+```text
 Previously saved teams are loaded.
 Their scores remain available.
 Their mission counts remain available.
+```
 
 ## How to Compile and Run
 
@@ -1231,6 +1396,7 @@ This helps detect invalid numeric input such as letters or incomplete numeric va
 
 The program can be viewed as several logical components.
 
+```text
                  CAMPUS MISSION TRACKER
                           |
           +---------------+---------------+
@@ -1254,11 +1420,13 @@ The program can be viewed as several logical components.
                     |
                     v
               Sorted Display
+```
 
 ### Data Lifecycle
 
 The system follows this general data lifecycle:
 
+```text
 teams.txt
     |
     v
@@ -1282,6 +1450,7 @@ saveTeams()
     |
     v
 teams.txt
+```
 
 This allows information to remain available between program executions.
 
@@ -1315,14 +1484,17 @@ The console interface was improved to make important information easier to read.
 
 Instead of displaying plain lines such as:
 
+```text
 Team found:
 ID: 101
 Name: team 1
 Score: 99
 Missions: 1
+```
 
 the current system uses a formatted profile:
 
+```text
 ========================================
              TEAM PROFILE
 ========================================
@@ -1332,11 +1504,13 @@ Total Score  : 99
 Missions     : 1
 Status       : ACTIVE
 ========================================
+```
 
 #### Leaderboard
 
 The leaderboard uses borders and aligned columns:
 
+```text
 ==============================================================
                      LEADERBOARD
 ==============================================================
@@ -1348,6 +1522,7 @@ Rank     ID       Team Name              Score    Missions
 ==============================================================
  Total Teams: 3
 ==============================================================
+```
 
 This makes the ranking information easier to read during a demonstration.
 
@@ -1476,6 +1651,8 @@ Project repository:
 https://github.com/khev-gt/MINI-PROJECT
 
 ## Final Project Status
+
+```text
 ==============================================================
                  CAMPUS MISSION TRACKER
 ==============================================================
@@ -1493,5 +1670,6 @@ Testing       : Completed
 Documentation : Completed
 
 ==============================================================
+```
 
 Campus Mission Tracker — C++ Team Management and Mission Tracking System
