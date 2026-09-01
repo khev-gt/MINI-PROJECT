@@ -1,0 +1,8 @@
+# Compiled C++ executables
+*.exe
+
+# Backup files
+*.backup
+
+# Test backup files
+teams-test-backup.txt
