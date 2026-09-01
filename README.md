@@ -1,459 +1,140 @@
-<<<<<<< HEAD
-=======
-`# Campus Mission Tracker` to the very end.**
-
-````markdown
->>>>>>> e4927b5 (Update README documentation)
 # Campus Mission Tracker
+
+A C++ console-based team management and mission tracking system.
+
+---
+
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Project Objectives](#project-objectives)
+3. [Main Features](#main-features)
+4. [System Menu](#system-menu)
+5. [Team Data Structure](#team-data-structure)
+6. [Team Registration](#team-registration)
+7. [Mission Point Recording](#mission-point-recording)
+8. [Find a Team](#find-a-team)
+9. [Remove a Team](#remove-a-team)
+10. [Leaderboard](#leaderboard)
+11. [Team Profile](#team-profile)
+12. [Input Validation](#input-validation)
+13. [Dynamic Memory Management](#dynamic-memory-management)
+14. [File Handling](#file-handling)
+15. [Data Format](#data-format)
+16. [Program Flow](#program-flow)
+17. [Project Structure](#project-structure)
+18. [Example Usage](#example-usage)
+19. [Example Leaderboard](#example-leaderboard)
+20. [Example Team Profile](#example-team-profile)
+21. [Testing](#testing)
+22. [How to Compile and Run](#how-to-compile-and-run)
+23. [Team Members and Roles](#team-members-and-roles)
+24. [Programming Concepts Demonstrated](#programming-concepts-demonstrated)
+25. [Current Project Status](#current-project-status)
+26. [Future Improvements](#future-improvements)
+27. [Conclusion](#conclusion)
+
+---
 
 ## Project Overview
 
-**Campus Mission Tracker** is a C++ console-based team management system designed to manage teams participating in campus missions.
+**Campus Mission Tracker** is a C++ console-based team management and mission tracking system.
 
-The system allows users to register teams, record mission points, search for teams, remove teams, display a ranked leaderboard, and save team information for future use.
+The system is designed to manage teams participating in campus missions or activities. Users can register teams, record mission points, search for teams, remove teams, view a sorted leaderboard, and save the data to a file.
 
-The project was developed as a practical C++ programming project to demonstrate how different programming concepts can be combined to create a functional management system.
+The project uses a menu-driven interface so users can easily select the operation they want to perform.
 
-The system uses a simple menu-driven interface so users can easily select the operation they want to perform.
+The system also includes input validation, dynamic memory management, file handling, sorting, searching, and structured data management.
 
 ---
 
-# Project Objectives
+## Project Objectives
 
 The main objectives of the Campus Mission Tracker are:
 
-1. Register and manage campus mission teams.
-2. Store important information about each team.
-3. Record points earned from completed missions.
-4. Keep track of the total score of each team.
-5. Keep track of the number of missions recorded for each team.
-6. Search for a specific team using its Team ID.
-7. Display individual team information using a clear Team Profile.
-8. Remove teams when necessary.
-9. Sort teams according to their total score.
-10. Display teams using a ranked leaderboard.
-11. Save team information into a file.
-12. Load previously saved team information.
-13. Validate user input.
-14. Handle invalid input safely.
-15. Demonstrate dynamic memory management.
-16. Demonstrate file input/output.
-17. Practice Git and GitHub version control.
+- Manage multiple teams in one system.
+- Register new teams with unique team IDs.
+- Store team names, scores, and mission counts.
+- Record mission points for registered teams.
+- Search for a specific team using its ID.
+- Remove teams from the system.
+- Sort teams based on their total score.
+- Display a formatted leaderboard.
+- Display a detailed team profile.
+- Save team data to a file.
+- Load previously saved data when the program starts.
+- Validate user input and reject invalid data.
+- Demonstrate dynamic memory allocation and memory cleanup.
+- Apply fundamental C++ programming concepts in a practical project.
 
 ---
 
-# Main Features
+## Main Features
 
-The Campus Mission Tracker contains six main operations:
+### 1. Register a Team
 
-| Option | Feature | Description |
-|---|---|---|
-| 1 | Register a Team | Creates and stores a new team |
-| 2 | Record Mission Points | Adds mission points to an existing team |
-| 3 | Find a Team | Searches for a team and displays its Team Profile |
-| 4 | Remove a Team | Removes an existing team |
-| 5 | Show Leaderboard | Displays all teams ranked by score |
-| 6 | Save and Exit | Saves the current data and exits the program |
+Users can register a new team by entering:
 
-Additional system features include:
+- Team ID
+- Team Name
 
-- Input validation
-- Error handling
-- Team searching
-- Team sorting
-- Dynamic memory allocation
-- File loading
-- File saving
-- Memory cleanup
-- Formatted console output
-- Git/GitHub version control
+The system checks that:
+
+- The ID is positive.
+- The ID does not exceed `99999`.
+- The team name is not empty.
+- The team name is no longer than 39 characters.
+- The team name does not contain the `|` character.
+- The team name contains only accepted characters.
+- The team ID is not already used.
+
+A newly registered team starts with:
+
+- Score: `0`
+- Missions: `0`
 
 ---
 
-# System Requirements
+### 2. Record Mission Points
 
-To compile and run the project, the following are recommended:
+Users can add mission points to an existing team.
 
-- Windows, Linux, or another operating system supporting C++
-- C++ compiler
-- GCC / MinGW
-- PowerShell, Command Prompt, or another terminal
-- Git for version control
-- Visual Studio Code or another C++ code editor
+The system asks for:
 
----
-
-# Project Structure
-
-```text
-MINI-PROJECT/
-│
-├── main.cpp
-├── teams.txt
-├── README.md
-└── .gitignore
-````
-
-## File Description
-
-| File         | Purpose                                                        |
-| ------------ | -------------------------------------------------------------- |
-| `main.cpp`   | Main C++ source code for the complete system                   |
-| `teams.txt`  | Stores saved team information                                  |
-| `README.md`  | Project documentation                                          |
-| `.gitignore` | Prevents unnecessary build and backup files from being tracked |
-
-Compiled executable files and backup files are intentionally ignored by Git.
-
----
-
-# Getting the Project
-
-## Using Git
-
-If Git is installed, open PowerShell or Command Prompt and run:
-
-```text
-git clone https://github.com/khev-gt/MINI-PROJECT.git
-```
-
-Then enter the project directory:
-
-```text
-cd MINI-PROJECT
-```
-
----
-
-# Downloading the Project from GitHub
-
-The project can also be downloaded as a ZIP file.
-
-### Steps
-
-1. Open the GitHub repository.
-2. Click the **Code** button.
-3. Select **Download ZIP**.
-4. Extract the ZIP file.
-5. Open the extracted `MINI-PROJECT` folder.
-6. Open PowerShell or Command Prompt in the project folder.
-
----
-
-# How to Compile the Program
-
-Open PowerShell inside the project directory.
-
-Example:
-
-```text
-PS C:\Users\CTT\MINI-PROJECT>
-```
-
-Compile the program using:
-
-```text
-g++ main.cpp -o integration.exe
-```
-
-### Explanation
-
-* `g++` is the C++ compiler.
-* `main.cpp` is the source code.
-* `-o` specifies the output executable.
-* `integration.exe` is the executable file created by the compiler.
-
-If there are no compiler errors, the executable will be created.
-
-Example:
-
-```text
-PS C:\Users\CTT\MINI-PROJECT> g++ main.cpp -o integration.exe
-```
-
----
-
-# How to Run the Program
-
-After compiling, run the program using:
-
-```text
-.\integration.exe
-```
-
-Example:
-
-```text
-PS C:\Users\CTT\MINI-PROJECT> .\integration.exe
-```
-
-The program will display the main menu.
-
----
-
-# Main Menu
-
-The Campus Mission Tracker displays:
-
-```text
-===== Campus Mission Tracker =====
-1. Register a team
-2. Record mission points
-3. Find a team
-4. Remove a team
-5. Show leaderboard
-6. Save and exit
-Enter your choice:
-```
-
-The user can select an operation by entering a number from `1` to `6`.
-
----
-
-# Option 1 — Register a Team
-
-## Purpose
-
-Option `1` is used to register a new team.
-
-The user provides:
-
-1. Team ID
-2. Team Name
-
-After the information is entered successfully, the system stores the team.
-
----
-
-## Example
-
-```text
-Enter your choice: 1
-Enter team ID: 101
-Enter team name: team 1
-Team registered successfully.
-```
-
-The team is now stored in the system.
-
-A newly registered team starts with its initial score and mission count.
-
-Example:
-
-```text
-Team ID: 101
-Team Name: team 1
-Score: 0
-Missions: 0
-```
-
-Mission points can later be added using Option `2`.
-
----
-
-# Team ID
-
-The Team ID is used to identify a team.
-
-Example Team IDs:
-
-```text
-101
-102
-103
-104
-```
-
-The Team ID must be entered as a valid whole number.
-
-The Team ID is important because the system uses it when:
-
-* Finding a team
-* Recording mission points
-* Removing a team
-
----
-
-# Team Name
-
-The user must provide a team name when registering a team.
-
-Examples:
-
-```text
-team 1
-team 2
-Campus Warriors
-Mission Squad
-```
-
-The team name is stored together with the Team ID.
-
----
-
-# Option 2 — Record Mission Points
-
-## Purpose
-
-Option `2` is used to record points earned by a team after completing a mission.
-
-The user enters:
-
-1. Team ID
-2. Mission points
-
-The entered points are added to the team's existing total score.
-
-The mission count is also increased by `1`.
-
----
-
-## Example
-
-Suppose Team `101` currently has:
-
-```text
-Score: 49
-Missions: 0
-```
-
-The user enters:
-
-```text
-Enter your choice: 2
-Enter team ID: 101
-Enter mission points earned (1-100): 50
-```
-
-The system adds `50` points.
-
-The team now has:
-
-```text
-Score: 99
-Missions: 1
-```
-
----
-
-# Mission Point Validation
+- Team ID
+- Mission points
 
 Mission points must be between:
 
 ```text
-1-100
-```
+1 - 100
 
-### Valid examples
+When valid points are entered:
 
-```text
-1
-10
-25
-50
-75
-99
-100
-```
+The team's total score increases.
+The team's mission count increases by 1.
 
-### Invalid examples
+Example:
 
-```text
-0
-101
--5
-abc
-```
+Current Score: 50
+Mission Points: 30
 
-If an invalid value is entered, the system displays:
+New Score: 80
+Missions: +1
+3. Find a Team
 
-```text
-Invalid points. Enter 1-100.
-```
+Users can search for a team by entering its Team ID.
 
-The invalid value is not recorded.
+If the team exists, the system displays a formatted Team Profile containing:
 
----
+Team ID
+Team Name
+Total Score
+Missions
+Status
 
-# Recording Multiple Missions
+Example:
 
-A team can complete multiple missions.
-
-For example:
-
-```text
-Mission 1 → 50 points
-Mission 2 → 30 points
-Mission 3 → 20 points
-```
-
-The team will have:
-
-```text
-Total Score: 100
-Missions: 3
-```
-
-The score represents the accumulated points from all recorded missions.
-
----
-
-# Team Not Found During Mission Recording
-
-If the user enters a Team ID that does not exist:
-
-```text
-Enter team ID: 999
-Team not found.
-```
-
-The system does not record the mission points.
-
-This prevents points from being assigned to a team that is not registered.
-
----
-
-# Option 3 — Find a Team
-
-## Purpose
-
-Option `3` is used to search for a specific team using its Team ID.
-
-The current system uses a formatted **TEAM PROFILE** display instead of the previous simple text output.
-
-This makes the information easier to read and gives the search function a more professional presentation.
-
----
-
-# Steps to Find a Team
-
-### Step 1
-
-Select Option `3`:
-
-```text
-Enter your choice: 3
-```
-
-### Step 2
-
-Enter the Team ID:
-
-```text
-Enter team ID: 101
-```
-
-### Step 3
-
-If the team exists, the system displays the Team Profile.
-
----
-
-# Team Profile
-
-The current Team Profile overlay is:
-
-```text
 ========================================
              TEAM PROFILE
 ========================================
@@ -463,120 +144,41 @@ Total Score  : 99
 Missions     : 1
 Status       : ACTIVE
 ========================================
-```
 
----
+If the team does not exist, the system displays:
 
-# Team Profile Fields
-
-The Team Profile contains:
-
-| Field       | Meaning                                  |
-| ----------- | ---------------------------------------- |
-| Team ID     | Unique identification number of the team |
-| Team Name   | Name of the team                         |
-| Total Score | Total points earned by the team          |
-| Missions    | Number of missions recorded              |
-| Status      | Current display status of the team       |
-
-The current profile displays:
-
-```text
-Status       : ACTIVE
-```
-
-when the team is successfully found.
-
----
-
-# Team Not Found
-
-If the user searches for a Team ID that does not exist:
-
-```text
-Enter your choice: 3
-Enter team ID: 999
 Team not found.
-```
+4. Remove a Team
 
-The system does not display an empty Team Profile.
+Users can remove an existing team by entering its Team ID.
 
-This gives the user clear feedback that the requested team does not exist.
+If the team exists:
 
----
-
-# Option 4 — Remove a Team
-
-## Purpose
-
-Option `4` allows the user to remove a registered team from the system.
-
-The user only needs to provide the Team ID.
-
----
-
-# Steps to Remove a Team
-
-### Step 1
-
-Select Option `4`:
-
-```text
-Enter your choice: 4
-```
-
-### Step 2
-
-Enter the Team ID:
-
-```text
-Enter team ID: 104
-```
-
-### Step 3
-
-If the team exists, it is removed.
-
-The system displays:
-
-```text
 Team removed.
-```
 
----
+If the team does not exist:
 
-# Removing a Non-Existing Team
-
-If the Team ID does not exist:
-
-```text
-Enter team ID: 999
 Team not found.
-```
 
-No team is removed.
+When a team is removed, the remaining team records are shifted so that the data remains organized.
 
-This prevents accidental removal of an unrelated team.
+5. Show Leaderboard
 
----
+The leaderboard displays all registered teams ranked by their total score.
 
-# Option 5 — Show Leaderboard
+The team with the highest score appears first.
 
-## Purpose
+The leaderboard displays:
 
-Option `5` displays all registered teams in ranked order.
+Rank
+Team ID
+Team Name
+Score
+Missions
+Total number of teams
 
-Before displaying the leaderboard, the system sorts the teams according to their total score.
+Example:
 
-The team with the highest score receives Rank `1`.
-
----
-
-# Leaderboard Design
-
-The current system uses the following formatted leaderboard overlay:
-
-```text
 ==============================================================
                      LEADERBOARD
 ==============================================================
@@ -588,513 +190,26 @@ Rank     ID       Team Name              Score    Missions
 ==============================================================
  Total Teams: 3
 ==============================================================
-```
 
-This design makes the leaderboard easier to read and gives the program a clearer console interface.
+If there are no registered teams, the system displays:
 
----
+No teams registered yet.
+6. Save and Exit
 
-# Leaderboard Columns
+The system saves the current team information into:
 
-The leaderboard contains five main columns.
+teams.txt
 
-| Column    | Description                           |
-| --------- | ------------------------------------- |
-| Rank      | Position of the team                  |
-| ID        | Team ID                               |
-| Team Name | Name of the team                      |
-| Score     | Total mission score                   |
-| Missions  | Number of completed/recorded missions |
+After successfully selecting option 6, the program displays:
 
-At the bottom, the system also displays:
-
-```text
-Total Teams: 3
-```
-
-This shows the number of teams currently registered.
-
----
-
-# Leaderboard Ranking
-
-The leaderboard is sorted by score.
-
-For example, suppose the system contains:
-
-```text
-Team A → 95
-Team B → 80
-Team C → 50
-```
-
-The leaderboard will display:
-
-```text
-Rank 1 → Team A → 95
-Rank 2 → Team B → 80
-Rank 3 → Team C → 50
-```
-
-The highest score appears first.
-
----
-
-# Leaderboard Updates
-
-The leaderboard changes automatically when team information changes.
-
-For example, if Team `103` receives additional points and its score becomes higher than Team `101`, the next leaderboard display will reflect the new ranking.
-
-Similarly, when a team is removed, it will no longer appear in the leaderboard.
-
-This means the leaderboard represents the current state of the team data.
-
----
-
-# Option 6 — Save and Exit
-
-## Purpose
-
-Option `6` saves the current team information and exits the program.
-
-The user selects:
-
-```text
-Enter your choice: 6
-```
-
-The system saves the current data and displays:
-
-```text
 Data saved. Goodbye!
-```
 
----
+Before the program terminates, allocated memory is also released.
 
-# Why Data Saving Is Important
+System Menu
 
-Team information is stored in memory while the program is running.
+When the program starts, the main menu is displayed:
 
-If the program closes without saving, changes made during the current session could be lost.
-
-The system therefore provides a save operation that writes the current information to:
-
-```text
-teams.txt
-```
-
-This allows information to be preserved between program sessions.
-
----
-
-# File Loading
-
-When the program starts, it attempts to load previously saved team information from:
-
-```text
-teams.txt
-```
-
-This allows previously registered teams to remain available after restarting the program.
-
----
-
-# File Storage
-
-The project uses:
-
-```text
-teams.txt
-```
-
-to store team information.
-
-A team record contains information such as:
-
-```text
-Team ID
-Team Name
-Score
-Missions
-```
-
-The data is stored so that it can be loaded again when the program starts.
-
----
-
-# Example Team Data
-
-A team record can be represented in the following format:
-
-```text
-101|team 1|99|1
-```
-
-The fields represent:
-
-```text
-101    → Team ID
-team 1 → Team Name
-99     → Total Score
-1      → Missions
-```
-
-The `|` character separates the individual fields.
-
----
-
-# Input Validation
-
-Input validation is used throughout the system to prevent invalid data from being processed.
-
-The system validates:
-
-* Menu choices
-* Team IDs
-* Mission points
-* Existing team IDs
-
----
-
-# Menu Validation
-
-The valid menu choices are:
-
-```text
-1
-2
-3
-4
-5
-6
-```
-
-If the user enters:
-
-```text
-7
-```
-
-the system displays:
-
-```text
-Invalid choice. Please enter 1-6.
-```
-
-The user must then enter a valid option.
-
----
-
-# Invalid Menu Input
-
-If the user enters text instead of a number:
-
-```text
-Enter your choice: abc
-```
-
-the system handles the invalid input and displays an appropriate error message.
-
-This prevents invalid menu input from causing the program to behave incorrectly.
-
----
-
-# Team ID Validation
-
-Team IDs must be valid whole numbers.
-
-Valid examples:
-
-```text
-101
-102
-500
-1000
-```
-
-Invalid examples:
-
-```text
-abc
-10.5
-hello
-```
-
-The program checks the input before using it.
-
-Possible validation messages include:
-
-```text
-Error: Team ID must be a whole number.
-```
-
-and:
-
-```text
-Error: Team ID must be a valid number.
-```
-
----
-
-# Team Existence Validation
-
-Before operations such as finding, recording points, or removing a team, the program checks whether the Team ID exists.
-
-If the ID does not exist:
-
-```text
-Team not found.
-```
-
-This prevents the system from performing operations on an invalid team.
-
----
-
-# Searching
-
-The system uses the Team ID to search for teams.
-
-Searching is required when:
-
-* Recording mission points
-* Finding a team
-* Removing a team
-
-The system checks the stored teams and finds the team whose ID matches the user's input.
-
-If a match is found, the requested operation is performed.
-
-If no match is found:
-
-```text
-Team not found.
-```
-
-is displayed.
-
----
-
-# Sorting and Ranking
-
-Sorting is used by the leaderboard.
-
-When Option `5` is selected, the system sorts the teams according to their total score before displaying them.
-
-The highest score is displayed first.
-
-For example:
-
-```text
-Team 1 → 99
-Team 2 → 80
-Team 3 → 50
-```
-
-becomes:
-
-```text
-1 → Team 1 → 99
-2 → Team 2 → 80
-3 → Team 3 → 50
-```
-
-The displayed rank is based on the sorted order.
-
----
-
-# Dynamic Memory Management
-
-The project demonstrates dynamic memory management for storing team information.
-
-The program maintains the current team storage capacity and can increase the capacity when more storage is required.
-
-This allows the system to handle a growing number of teams.
-
-Dynamic memory management is useful because the program does not need to depend only on a small fixed number of team records.
-
----
-
-# Memory Capacity
-
-When the existing storage becomes insufficient, the system increases its capacity.
-
-The general process is:
-
-```text
-Current Capacity
-       |
-       v
-New Team Required
-       |
-       v
-Check Available Capacity
-       |
-       +----------------+
-       |                |
-   Enough Space      Not Enough
-       |                |
-       v                v
- Continue        Increase Capacity
-                       |
-                       v
-                  Continue
-```
-
-This allows the application to support additional teams without manually defining a new fixed-size array.
-
----
-
-# Memory Cleanup
-
-Dynamically allocated memory must be released when it is no longer required.
-
-The program performs memory cleanup before termination.
-
-Proper memory cleanup helps prevent memory leaks and demonstrates responsible memory management in C++.
-
----
-
-# Functions
-
-The system is divided into functions so that different tasks can be handled separately.
-
-Examples of functionality include:
-
-* User interface / menu display
-* Capacity management
-* Team registration
-* Team searching
-* Mission recording
-* Team removal
-* Leaderboard sorting
-* Team display
-* File loading
-* File saving
-
-Using functions makes the program easier to read, test, debug, and maintain.
-
----
-
-# Program Flow
-
-The general program flow is:
-
-```text
-START
-  |
-  v
-Load saved team data
-  |
-  v
-Display Main Menu
-  |
-  +--------------------------+
-  |                          |
-  v                          v
-Register Team          Record Mission
-  |                          |
-  +-------------+------------+
-                |
-                v
-           Find Team
-                |
-                v
-          Remove Team
-                |
-                v
-          Leaderboard
-                |
-                v
-          Save and Exit
-                |
-                v
-               END
-```
-
-The user can repeatedly perform operations and return to the main menu.
-
-The program continues until the user selects:
-
-```text
-6. Save and exit
-```
-
----
-
-# Typical User Workflow
-
-A typical user can follow this workflow:
-
-## Step 1 — Register Teams
-
-Use Option `1` to register all participating teams.
-
-Example:
-
-```text
-101 → team 1
-102 → team 2
-103 → team 3
-```
-
----
-
-## Step 2 — Record Missions
-
-When a team completes a mission, use Option `2` to record its points.
-
-Example:
-
-```text
-Team 101 → 99 points
-Team 102 → 80 points
-Team 103 → 50 points
-```
-
----
-
-## Step 3 — Check an Individual Team
-
-Use Option `3` to search for a specific team.
-
-The system displays its Team Profile.
-
----
-
-## Step 4 — View the Rankings
-
-Use Option `5` to display the leaderboard.
-
-The system automatically sorts the teams according to score.
-
----
-
-## Step 5 — Remove a Team if Necessary
-
-Use Option `4` if a team needs to be removed.
-
----
-
-## Step 6 — Save
-
-Use Option `6` to save the current data before exiting.
-
----
-
-# Complete Example Session
-
-The following example demonstrates a complete system workflow.
-
-## Starting the Program
-
-```text
-PS C:\Users\CTT\MINI-PROJECT> .\integration.exe
-```
-
-The menu appears:
-
-```text
 ===== Campus Mission Tracker =====
 1. Register a team
 2. Record mission points
@@ -1103,87 +218,176 @@ The menu appears:
 5. Show leaderboard
 6. Save and exit
 Enter your choice:
-```
+Menu Options
+Option	Operation	Description
+1	Register a team	Add a new team
+2	Record mission points	Add mission points to a team
+3	Find a team	Search and display team information
+4	Remove a team	Delete a team
+5	Show leaderboard	Display teams ranked by score
+6	Save and exit	Save data and close the program
+Team Data Structure
 
----
+The program uses a Team structure to store team information.
 
-# Registering Teams
+typedef struct {
+    int id;
+    char name[40];
+    int score;
+    int missions;
+} Team;
 
-Select Option `1`:
+Each team contains four main pieces of information:
 
-```text
-Enter your choice: 1
-Enter team ID: 101
-Enter team name: team 1
-Team registered successfully.
-```
+ID
+int id;
 
-Register additional teams:
+Stores the unique team ID.
 
-```text
-Enter your choice: 1
-Enter team ID: 102
-Enter team name: team 2
-Team registered successfully.
-```
+Name
+char name[40];
 
-```text
-Enter your choice: 1
-Enter team ID: 103
-Enter team name: team 3
-Team registered successfully.
-```
+Stores the team name.
 
----
+The program reserves 40 characters for the name, including the terminating null character.
 
-# Recording Mission Points
+Score
+int score;
 
-For Team 101:
+Stores the team's total mission score.
 
-```text
-Enter your choice: 2
-Enter team ID: 101
-Enter mission points earned (1-100): 99
-```
+Missions
+int missions;
 
-For Team 102:
+Stores the number of missions completed or recorded.
 
-```text
-Enter your choice: 2
-Enter team ID: 102
-Enter mission points earned (1-100): 80
-```
+Team Registration
 
-For Team 103:
+The registration process is handled by:
 
-```text
-Enter your choice: 2
-Enter team ID: 103
-Enter mission points earned (1-100): 50
-```
+addTeam(int id, string name)
 
-The teams now have:
+The function performs several validation checks before adding a team.
 
-```text
-Team 101 → Score 99 → Missions 1
-Team 102 → Score 80 → Missions 1
-Team 103 → Score 50 → Missions 1
-```
+Registration process
+Enter Team ID
+       ↓
+Validate ID
+       ↓
+Enter Team Name
+       ↓
+Validate Name
+       ↓
+Check Duplicate ID
+       ↓
+Ensure Memory Capacity
+       ↓
+Create Team
+       ↓
+Set Score = 0
+       ↓
+Set Missions = 0
+       ↓
+Register Successfully
 
----
+A team cannot be registered if its ID already exists.
 
-# Find Team Example
+Mission Point Recording
 
-Select Option `3`:
+Mission points are handled by:
 
-```text
-Enter your choice: 3
-Enter team ID: 101
-```
+recordMission(int id, int points)
 
-The system displays:
+The system first searches for the team.
 
-```text
+If the team exists, the points are validated.
+
+Valid points must satisfy:
+
+1 <= points <= 100
+
+After successful validation:
+
+teams[index].score += points;
+teams[index].missions++;
+
+Therefore, both the score and mission count are updated.
+
+Find a Team
+
+The system searches for teams using:
+
+findTeamIndex(int id)
+
+The function checks each team until it finds a matching ID.
+
+If a matching team is found, the function returns its array index.
+
+If no team is found:
+
+return -1;
+
+The main program then displays:
+
+Team not found.
+Remove a Team
+
+Team deletion is handled by:
+
+deleteTeam(int id)
+
+First, the system searches for the team.
+
+After finding the team, the records after it are shifted one position to the left.
+
+Conceptually:
+
+Before:
+
+[Team A] [Team B] [Team C] [Team D]
+
+Remove Team B
+
+After:
+
+[Team A] [Team C] [Team D]
+
+The variable teamSize is then reduced by one.
+
+Leaderboard
+
+The leaderboard is sorted using:
+
+sortLeaderboard()
+
+The system compares team scores and moves the team with the higher score toward the beginning.
+
+The sorting process uses nested loops and swaps adjacent Team records.
+
+The comparison is:
+
+if (teams[j].score < teams[j + 1].score)
+
+Therefore, the leaderboard is arranged in:
+
+Highest Score
+      ↓
+Lower Score
+      ↓
+Lowest Score
+
+The leaderboard is displayed through:
+
+displayTeams()
+
+The display includes a formatted header, ranking, team information, and total team count.
+
+Team Profile
+
+The Find Team feature provides a detailed profile for an individual team.
+
+The current profile format is:
+
 ========================================
              TEAM PROFILE
 ========================================
@@ -1193,1447 +397,884 @@ Total Score  : 99
 Missions     : 1
 Status       : ACTIVE
 ========================================
-```
+Profile Information
+Field	Meaning
+Team ID	Unique identifier of the team
+Team Name	Registered team name
+Total Score	Total mission points earned
+Missions	Number of recorded missions
+Status	Current display status
 
----
+The current system displays:
 
-# Find Non-Existing Team
+Status : ACTIVE
 
-If the user enters:
+when a registered team is found.
 
-```text
-Enter your choice: 3
-Enter team ID: 999
-```
+Input Validation
 
-the system displays:
+Input validation is an important part of the system.
 
-```text
-Team not found.
-```
+The program validates menu choices, team IDs, team names, mission points, and loaded file data.
 
----
+Menu Validation
 
-# Leaderboard Example
+The menu accepts choices from:
 
-Select Option `5`:
+1 - 6
 
-```text
-Enter your choice: 5
-```
+Invalid input produces:
 
-The system displays:
-
-```text
-==============================================================
-                     LEADERBOARD
-==============================================================
-Rank     ID       Team Name              Score    Missions
---------------------------------------------------------------
-1        101      team 1                 99       1
-2        102      team 2                 80       1
-3        103      team 3                 50       1
-==============================================================
- Total Teams: 3
-==============================================================
-```
-
----
-
-# Remove Team Example
-
-Select Option `4`:
-
-```text
-Enter your choice: 4
-Enter team ID: 103
-Team removed.
-```
-
-After removal, Team 103 will no longer appear in the leaderboard.
-
----
-
-# Save and Exit Example
-
-Select Option `6`:
-
-```text
-Enter your choice: 6
-Data saved. Goodbye!
-```
-
-The current team information is saved to `teams.txt`.
-
----
-
-# Error Handling Examples
-
-## Invalid Menu Choice
-
-Input:
-
-```text
-Enter your choice: 9
-```
-
-Output:
-
-```text
 Invalid choice. Please enter 1-6.
-```
+Team ID Validation
 
----
+The Team ID must:
 
-## Invalid Mission Points
+Be a whole number.
+Be greater than 0.
+Be no greater than 99999.
+Be unique.
 
-Input:
+Examples of invalid conditions:
 
-```text
-Enter mission points earned (1-100): 150
-```
+ID <= 0
+ID > 99999
+Duplicate ID
+Non-numeric ID
+Team Name Validation
 
-Output:
+The team name:
 
-```text
+Cannot be empty.
+Must be shorter than 40 characters.
+Cannot contain |.
+Must contain accepted characters.
+
+Accepted characters include:
+
+Letters
+Numbers
+Spaces
+Hyphens
+Underscores
+Periods
+Commas
+Semicolons
+Colons
+Parentheses
+Mission Point Validation
+
+Mission points must be:
+
+1 - 100
+
+Invalid input produces:
+
 Invalid points. Enter 1-100.
-```
+Dynamic Memory Management
 
----
+The project demonstrates dynamic memory management using:
 
-## Non-Existing Team
+Team *teams = NULL;
 
-Input:
+The system does not rely on a fixed-size team array.
 
-```text
-Enter team ID: 999
-```
+Instead, memory is dynamically allocated and expanded when more space is required.
 
-Output:
+The main function responsible for this is:
 
-```text
-Team not found.
-```
+ensureCapacity()
+Capacity Management
 
----
+The initial capacity is:
 
-# Testing
+0
 
-The Campus Mission Tracker has been tested using normal and invalid input cases.
+When the first team is added, the capacity becomes:
 
-## Functional Tests
+2
 
-The following operations have been tested:
-
-* Registering a team
-* Recording mission points
-* Finding an existing team
-* Displaying the Team Profile
-* Searching for a non-existing team
-* Removing a team
-* Displaying the leaderboard
-* Sorting teams by score
-* Displaying total team count
-* Saving data
-* Loading saved data
-* Exiting the program
-
----
-
-# Validation Tests
-
-The following validation cases have been tested:
-
-* Valid menu choices
-* Invalid menu choices
-* Invalid Team IDs
-* Non-existing Team IDs
-* Valid mission points
-* Mission points below `1`
-* Mission points above `100`
-* Invalid mission point input
-
----
-
-# Tested Team Profile Output
-
-The updated Team Profile was tested successfully:
-
-```text
-========================================
-             TEAM PROFILE
-========================================
-Team ID      : 101
-Team Name    : team 1
-Total Score  : 99
-Missions     : 1
-Status       : ACTIVE
-========================================
-```
-
----
-
-# Tested Leaderboard Output
-
-The updated leaderboard was tested successfully:
-
-```text
-==============================================================
-                     LEADERBOARD
-==============================================================
-Rank     ID       Team Name              Score    Missions
---------------------------------------------------------------
-1        101      team 1                 99       1
-2        102      team 2                 80       1
-3        103      team 3                 50       1
-==============================================================
- Total Teams: 3
-==============================================================
-```
-
----
-
-# Git and GitHub
-
-The project is managed using Git for version control and GitHub for remote repository storage.
-
-GitHub repository:
-
-```text
-https://github.com/khev-gt/MINI-PROJECT.git
-```
-
----
-
-# Checking Git Status
-
-To check the current repository status:
-
-```text
-git status
-```
-
-A clean repository displays:
-
-```text
-On branch main
-Your branch is up to date with 'origin/main'.
-
-nothing to commit, working tree clean
-```
-
-This means the local branch has no uncommitted changes and is synchronized with the remote branch.
-
----
-
-# Reviewing Changes
-
-Before committing a modification, the changes can be reviewed using:
-
-```text
-git diff
-```
-
-For changes specifically in `main.cpp`:
-
-```text
-git diff -- main.cpp
-```
-
-For README changes:
-
-```text
-git diff -- README.md
-```
-
-This allows the developer to inspect exactly what changed.
-
----
-
-# Git Commit Workflow
-
-After modifying a file, use the following workflow.
-
-## Step 1 — Check Status
-
-```text
-git status
-```
-
-## Step 2 — Review Changes
-
-```text
-git diff
-```
-
-## Step 3 — Stage the File
-
-For example:
-
-```text
-git add README.md
-```
-
-or:
-
-```text
-git add main.cpp
-```
-
-## Step 4 — Check Staged Changes
-
-```text
-git status
-```
-
-The file should appear under:
-
-```text
-Changes to be committed:
-```
-
-## Step 5 — Commit
+When the current capacity is not enough, it is doubled.
 
 Example:
 
-```text
-git commit -m "Update README documentation"
-```
+0
+ ↓
+2
+ ↓
+4
+ ↓
+8
+ ↓
+16
+ ↓
+32
 
-## Step 6 — Push
+This allows the system to support a changing number of teams without defining a fixed maximum team count in the program.
 
-```text
-git push origin main
-```
+Reallocation
 
-## Step 7 — Verify
+The program uses:
 
-```text
-git status
-```
+realloc()
 
-The branch should be up to date with the remote repository.
+to increase the memory area when necessary.
 
----
+If memory allocation fails, the program displays:
 
-# Git Pull and Rebase
+Memory allocation failed.
+Memory Cleanup
 
-If GitHub contains changes that are not available locally, a normal push may be rejected.
+Before the program terminates, the allocated memory is released using:
 
-For example:
+cleanup(&teams, &teamSize, &capacity);
 
-```text
-! [rejected]        main -> main (fetch first)
-```
+Inside the cleanup function:
 
-The local repository can be updated using:
+free(*teams_ptr);
 
-```text
-git pull --rebase origin main
-```
+The pointer is then reset to:
 
-After a successful rebase, push again:
+NULL
 
-```text
-git push origin main
-```
+and the size and capacity are reset to zero.
 
-This keeps the local changes integrated with the latest remote changes.
+This prevents allocated memory from remaining unnecessarily after the program finishes.
 
----
+File Handling
 
-# .gitignore
+The system uses a text file named:
 
-The project includes a `.gitignore` file.
+teams.txt
 
-Current rules include:
+The file is used for persistent storage.
 
-```text
-# Compiled C++ executables
-*.exe
+This means that team information can remain available after the program is closed and restarted.
 
-# Backup files
-*.backup
+Loading Data
 
-# Test backup files
-teams-test-backup.txt
-```
+When the program starts, it calls:
 
-These rules prevent generated executable files and backup files from being unnecessarily committed to GitHub.
+loadTeams();
 
----
+The function attempts to open:
 
-# Why .gitignore Is Important
+teams.txt
 
-During development, the compiler may create executable files such as:
+in read mode.
 
-```text
-main.exe
-integration.exe
-```
+If the file exists, the saved team records are loaded into memory.
 
-The project may also contain temporary backup files during development.
+Each loaded record is validated before it is accepted.
 
-These files are not part of the source code and do not need to be stored in the GitHub repository.
+Invalid records are rejected.
 
-The `.gitignore` file keeps the repository clean by ignoring them.
+Saving Data
 
----
+When the user selects:
 
-# Checking .gitignore
+6. Save and exit
 
-To check whether the `.gitignore` file exists:
+the program calls:
 
-```text
-Test-Path .gitignore
-```
+saveTeams();
+
+The team information is written to:
+
+teams.txt
+
+The saved information includes:
+
+Team ID
+Team Name
+Score
+Missions
+Data Format
+
+Each team is stored in teams.txt using the following format:
+
+ID|TeamName|Score|Missions
+
+Example:
+
+101|team 1|99|1
+102|team 2|80|1
+103|team 3|50|1
+
+The | character separates the four fields.
+
+Therefore, team names are not allowed to contain:
+
+|
+
+This prevents the stored file format from becoming ambiguous.
+
+Program Flow
+
+The overall program works as follows:
+
+START
+  |
+  v
+Load teams.txt
+  |
+  v
+Display Main Menu
+  |
+  +----> 1. Register Team
+  |          |
+  |          v
+  |       Validate Input
+  |          |
+  |          v
+  |       Add Team
+  |
+  +----> 2. Record Mission Points
+  |          |
+  |          v
+  |       Find Team
+  |          |
+  |          v
+  |       Validate Points
+  |          |
+  |          v
+  |       Update Score/Missions
+  |
+  +----> 3. Find Team
+  |          |
+  |          v
+  |       Display Team Profile
+  |
+  +----> 4. Remove Team
+  |          |
+  |          v
+  |       Find and Delete Team
+  |
+  +----> 5. Show Leaderboard
+  |          |
+  |          v
+  |       Sort by Score
+  |          |
+  |          v
+  |       Display Leaderboard
+  |
+  +----> 6. Save and Exit
+             |
+             v
+         Save teams.txt
+             |
+             v
+         Free Memory
+             |
+             v
+            END
+Project Structure
+
+The project contains the following important files:
+
+MINI-PROJECT/
+│
+├── main.cpp
+├── teams.txt
+├── test-evidence.md
+└── README.md
+main.cpp
+
+Contains the complete C++ implementation of the Campus Mission Tracker.
+
+It includes:
+
+Team structure
+Dynamic memory management
+Team registration
+Mission recording
+Team searching
+Team deletion
+Leaderboard sorting
+Leaderboard display
+File loading
+File saving
+Main menu
+Input validation
+Memory cleanup
+teams.txt
+
+Stores persistent team data.
+
+Example:
+
+101|team 1|99|1
+102|team 2|80|1
+103|team 3|50|1
+test-evidence.md
+
+Contains project testing evidence and records related to system verification.
+
+README.md
+
+Contains project documentation, system explanation, features, instructions, testing information, and project status.
+
+Example Usage
+Step 1 — Start the Program
+
+The program displays:
+
+===== Campus Mission Tracker =====
+1. Register a team
+2. Record mission points
+3. Find a team
+4. Remove a team
+5. Show leaderboard
+6. Save and exit
+Enter your choice:
+Step 2 — Register a Team
+
+Select:
+
+1
+
+Enter:
+
+Enter team ID: 101
+Enter team name: team 1
+
+The system registers the team.
+
+Initial information:
+
+ID: 101
+Name: team 1
+Score: 0
+Missions: 0
+Step 3 — Record Mission Points
+
+Select:
+
+2
+
+Enter:
+
+Enter team ID: 101
+Enter mission points earned (1-100): 99
+
+The team becomes:
+
+Score: 99
+Missions: 1
+Step 4 — Find the Team
+
+Select:
+
+3
+
+Enter:
+
+Enter team ID: 101
+
+The system displays:
+
+========================================
+             TEAM PROFILE
+========================================
+Team ID      : 101
+Team Name    : team 1
+Total Score  : 99
+Missions     : 1
+Status       : ACTIVE
+========================================
+Step 5 — View Leaderboard
+
+Select:
+
+5
+
+The system sorts the teams by score and displays the leaderboard.
+
+Step 6 — Save and Exit
+
+Select:
+
+6
+
+The program saves the current data to:
+
+teams.txt
+
+and displays:
+
+Data saved. Goodbye!
+Example Leaderboard
+
+For three teams, the leaderboard can look like:
+
+==============================================================
+                     LEADERBOARD
+==============================================================
+Rank     ID       Team Name              Score    Missions
+--------------------------------------------------------------
+1        101      team 1                 99       1
+2        102      team 2                 80       1
+3        103      team 3                 50       1
+==============================================================
+ Total Teams: 3
+==============================================================
+
+The ranking is based on total score.
+
+Example Team Profile
+
+When a valid team ID is found:
+
+========================================
+             TEAM PROFILE
+========================================
+Team ID      : 101
+Team Name    : team 1
+Total Score  : 99
+Missions     : 1
+Status       : ACTIVE
+========================================
+
+When an invalid or unknown ID is entered:
+
+Team not found.
+Testing
+
+The system should be tested using both valid and invalid inputs.
+
+Test Case 1 — Register Valid Team
+
+Input:
+
+ID: 101
+Name: team 1
 
 Expected result:
 
-```text
-True
-```
+Team registered successfully.
+Test Case 2 — Duplicate Team ID
 
-To view its contents:
+Input:
 
-```text
-Get-Content .gitignore
-```
+ID: 101
 
-The expected contents are:
+when ID 101 already exists.
 
-```text
-# Compiled C++ executables
-*.exe
+Expected result:
 
-# Backup files
-*.backup
+Team ID already exists.
+Test Case 3 — Invalid Team ID
 
-# Test backup files
-teams-test-backup.txt
-```
+Input:
 
----
+-1
 
-# Building and Testing After Changes
+Expected result:
 
-Whenever `main.cpp` is modified, the recommended workflow is:
+Error: Team ID must be positive.
+Test Case 4 — Team ID Too Large
 
-```text
-Edit Code
-   |
-   v
-Save Code
-   |
-   v
+Input:
+
+100000
+
+Expected result:
+
+Error: Team ID too large (max 99999).
+Test Case 5 — Invalid Mission Points
+
+Input:
+
+0
+
+or:
+
+101
+
+Expected result:
+
+Invalid points. Enter 1-100.
+Test Case 6 — Find Existing Team
+
+Input:
+
+101
+
+Expected result:
+
+TEAM PROFILE
+
+with the team's ID, name, score, missions, and status.
+
+Test Case 7 — Find Non-existing Team
+
+Input:
+
+999
+
+Expected result:
+
+Team not found.
+Test Case 8 — Remove Existing Team
+
+Input:
+
+101
+
+Expected result:
+
+Team removed.
+Test Case 9 — Remove Non-existing Team
+
+Input:
+
+999
+
+Expected result:
+
+Team not found.
+Test Case 10 — Leaderboard
+
+Register multiple teams with different scores.
+
+Expected result:
+
+Highest score appears first.
+Lower scores appear below.
+Rank numbers are displayed.
+Total team count is displayed.
+Test Case 11 — Save Data
+
+Select:
+
+6
+
+Expected result:
+
+Data saved. Goodbye!
+
+The information should be written to:
+
+teams.txt
+Test Case 12 — Load Saved Data
+
+Run the program again after saving.
+
+Expected result:
+
+Previously saved teams are loaded.
+Their scores remain available.
+Their mission counts remain available.
+How to Compile and Run
+Requirements
+
+You need:
+
+A C++ compiler
+Windows PowerShell or Command Prompt
+The project files
+
+A compiler such as g++ can be used.
+
 Compile
-   |
-   v
-Run Program
-   |
-   v
-Test Feature
-   |
-   v
-Check Git
-   |
-   v
-Commit
-   |
-   v
-Push to GitHub
-```
 
-Compile:
+Open PowerShell inside the project folder:
 
-```text
-g++ main.cpp -o integration.exe
-```
+MINI-PROJECT
 
 Run:
 
-```text
-.\integration.exe
-```
+g++ main.cpp -o main
 
-Check Git:
+If there are no compilation errors, an executable named:
 
-```text
-git status
-```
+main.exe
 
----
+will be created.
 
-# Troubleshooting
+Run the Program
 
-## Problem: `g++` Is Not Recognized
+Run:
 
-If PowerShell says that `g++` is not recognized, GCC / MinGW may not be installed or may not be configured in the system PATH.
+.\main.exe
 
-Check the compiler using:
+The Campus Mission Tracker menu should appear.
 
-```text
-g++ --version
-```
+Compile and Run Again After Changes
 
-If the command works, the compiler is available.
+Whenever main.cpp is modified:
 
----
+g++ main.cpp -o main
 
-# Problem: Executable Does Not Exist
+Then:
 
-If PowerShell cannot find:
+.\main.exe
+Team Members and Roles
 
-```text
-integration.exe
-```
+The project team consists of five members.
 
-compile the program first:
+1. Long Thina
 
-```text
-g++ main.cpp -o integration.exe
-```
+Role: Test Captain
 
-Then run:
+Responsibilities include:
 
-```text
-.\integration.exe
-```
+Testing system functionality.
+Checking valid and invalid inputs.
+Verifying expected outputs.
+Recording testing evidence.
+2. Kheng Khevin
 
----
+Role: Integration Captain
 
-# Problem: Team Data Is Not Loaded
+Responsibilities include:
 
-Check that:
+Integrating different parts of the project.
+Coordinating project changes.
+Helping maintain the project repository.
+Ensuring different components work together.
+3. Chheng Longheng
 
-```text
-teams.txt
-```
+Role: Memory Guardian
 
-exists in the expected project directory.
+Responsibilities include:
 
-The program uses this file to store persistent team information.
+Managing dynamic memory.
+Working with team storage.
+Checking memory allocation.
+Checking memory cleanup.
+Maintaining ensureCapacity().
+Maintaining cleanup().
+4. Leng Sakda
 
----
+Role: UX
 
-# Problem: Invalid Mission Points
+Responsibilities include:
 
-If the system displays:
+Designing the console interface.
+Improving menu presentation.
+Improving Team Profile presentation.
+Improving Leaderboard presentation.
+Making system output easier to understand.
+5. Lim Chanmonyroth
 
-```text
-Invalid points. Enter 1-100.
-```
+Role: Record Architecture
 
-enter a whole number between:
+Responsibilities include:
 
-```text
-1
-```
+Working with team records.
+Supporting data organization.
+Working with data storage and retrieval.
+Supporting the teams.txt structure.
+Programming Concepts Demonstrated
 
-and:
+This project demonstrates several important programming concepts.
 
-```text
-100
-```
-
----
-
-# Problem: Team Not Found
-
-If the system displays:
-
-```text
-Team not found.
-```
-
-check that the Team ID has been registered and that the entered ID is correct.
-
----
-
-# Problem: Git Shows Modified Files
-
-If:
-
-```text
-git status
-```
-
-shows:
-
-```text
-modified:   main.cpp
-```
-
-this means the file has changed since the last commit.
-
-Review the changes:
-
-```text
-git diff -- main.cpp
-```
-
-If the changes are correct:
-
-```text
-git add main.cpp
-```
-
-Then commit:
-
-```text
-git commit -m "Describe the change"
-```
-
-Then push:
-
-```text
-git push origin main
-```
-
----
-
-# Problem: Git Says Working Tree Is Clean
-
-If Git displays:
-
-```text
-nothing to commit, working tree clean
-```
-
-this is not an error.
-
-It means there are no uncommitted changes.
-
-If it also says:
-
-```text
-Your branch is up to date with 'origin/main'.
-```
-
-the local project and GitHub repository are synchronized.
-
----
-
-# Programming Concepts Demonstrated
-
-## Structures
-
-Team information is grouped into a structure containing related fields such as:
-
-* Team ID
-* Team Name
-* Score
-* Missions
-
-This allows each team to be represented as one data object.
-
----
-
-# Functions
-
-The program uses functions to separate different responsibilities.
-
-This improves organization and makes the code easier to maintain.
-
----
-
-# Searching
-
-Searching is used to locate a team using its Team ID.
-
-It is required for:
-
-* Finding teams
-* Recording mission points
-* Removing teams
-
----
-
-# Sorting
-
-Sorting is used to arrange teams according to their total scores.
-
-This produces the ranking displayed by the leaderboard.
-
----
-
-# Dynamic Memory
-
-Dynamic memory is used to manage team storage.
-
-The system can increase its capacity when additional team storage is required.
-
----
-
-# File Input/Output
-
-The system reads and writes team information using:
-
-```text
-teams.txt
-```
-
-This provides persistent storage.
-
----
-
-# Input Validation
-
-The program validates user input before processing it.
-
-Examples include:
-
-* Menu choice validation
-* Team ID validation
-* Mission point validation
-
----
-
-# Error Handling
-
-The system provides clear feedback when invalid input or invalid operations occur.
-
-Examples:
-
-```text
-Invalid choice. Please enter 1-6.
-```
-
-```text
-Invalid points. Enter 1-100.
-```
-
-```text
-Team not found.
-```
-
----
-
-# Memory Cleanup
-
-The system releases dynamically allocated memory before the program terminates.
-
-This helps prevent memory leaks and demonstrates proper resource management.
-
----
-
-# System Design Summary
-
-The Campus Mission Tracker follows a simple management cycle:
-
-```text
-REGISTER
-   |
-   v
-RECORD MISSIONS
-   |
-   v
-SEARCH / VIEW PROFILE
-   |
-   v
-UPDATE TEAM DATA
-   |
-   v
-VIEW LEADERBOARD
-   |
-   v
-REMOVE IF NEEDED
-   |
-   v
-SAVE DATA
-```
-
-This provides a complete workflow for managing campus mission teams.
-
----
-
-# Data Management
-
-The system manages team information throughout the program lifecycle.
-
-The basic data flow is:
-
-```text
-INPUT
-  |
-  v
-VALIDATE
-  |
-  v
-STORE
-  |
-  v
-UPDATE
-  |
-  v
-DISPLAY
-  |
-  v
-SAVE
-```
-
-This ensures that team information can be entered, checked, updated, displayed, and stored.
-
----
-
-# Data Relationships
-
-Each team contains the following important information:
-
-```text
-Team
- |
- +-- Team ID
- |
- +-- Team Name
- |
- +-- Total Score
- |
- +-- Missions
-```
-
-The Team ID identifies the team.
-
-The Team Name identifies the team in human-readable form.
-
-The Total Score stores accumulated mission points.
-
-The Missions value records the number of mission point entries.
-
----
-
-# Example of Score Calculation
-
-Suppose Team 101 completes three missions:
-
-```text
-Mission 1 = 30 points
-Mission 2 = 25 points
-Mission 3 = 40 points
-```
-
-The total score becomes:
-
-```text
-30 + 25 + 40 = 95
-```
-
-The Team Profile would then show:
-
-```text
-Total Score  : 95
-Missions     : 3
-```
-
-The leaderboard uses the total score when determining the team's rank.
-
----
-
-# Relationship Between Missions and Score
-
-Every time mission points are successfully recorded:
-
-1. The entered points are added to the team's total score.
-2. The mission count increases by one.
-
-For example:
-
-```text
-Before:
-Score = 50
-Missions = 2
-
-New mission:
-Points = 30
-
-After:
-Score = 80
-Missions = 3
-```
-
-This keeps the score and mission count synchronized.
-
----
-
-# Relationship Between Score and Leaderboard
-
-The leaderboard uses the team's total score to determine its position.
-
-For example:
-
-```text
-Team A = 100
-Team B = 75
-Team C = 50
-```
-
-The ranking becomes:
-
-```text
-Rank 1 → Team A
-Rank 2 → Team B
-Rank 3 → Team C
-```
-
-If the scores change, the leaderboard can display the new ranking after sorting.
-
----
-
-# Relationship Between Search and Team Profile
-
-Option `3` connects the Team ID search function with the Team Profile display.
-
-The process is:
-
-```text
-Enter Team ID
-      |
-      v
-Search Team
-      |
-      v
-Team Exists?
-   /       \
- YES       NO
-  |         |
-  v         v
-Display    Team
-Profile    Not Found
-```
-
-This gives the user either detailed team information or a clear error message.
-
----
-
-# Relationship Between Remove and Leaderboard
-
-When a team is removed, the team is no longer part of the active team collection.
-
-Therefore, when the leaderboard is displayed afterward, the removed team does not appear.
-
-Example:
-
-```text
-Before removal:
-
-101 → 99
-102 → 80
-103 → 50
-```
-
-After removing Team 103:
-
-```text
-101 → 99
-102 → 80
-```
-
-The leaderboard updates based on the remaining teams.
-
----
-
-# Save and Load Workflow
-
-The program uses a persistent data workflow:
-
-```text
-PROGRAM START
-      |
-      v
-LOAD teams.txt
-      |
-      v
-WORK WITH TEAM DATA
-      |
-      v
-USER MAKES CHANGES
-      |
-      v
-SAVE teams.txt
-      |
-      v
-PROGRAM EXIT
-```
-
-This allows the system to preserve team information between sessions.
-
----
-
-# User Interface Improvements
-
-The console interface has been improved to make important information easier to understand.
-
-The Team Profile provides detailed information about one selected team.
-
-The Leaderboard provides a complete overview of all registered teams.
-
-These overlays improve readability without changing the core functionality of the system.
-
----
-
-# Team Profile Update
-
-The original simple team search output was improved into a formatted Team Profile.
-
-Current output:
-
-```text
-========================================
-             TEAM PROFILE
-========================================
-Team ID      : 101
-Team Name    : team 1
-Total Score  : 99
-Missions     : 1
-Status       : ACTIVE
-========================================
-```
-
-The Team Profile provides a clear summary of an individual team.
-
----
-
-# Leaderboard Update
-
-The original basic leaderboard output was improved into a more organized leaderboard overlay.
-
-Current output:
-
-```text
-==============================================================
-                     LEADERBOARD
-==============================================================
-Rank     ID       Team Name              Score    Missions
---------------------------------------------------------------
-1        101      team 1                 99       1
-2        102      team 2                 80       1
-3        103      team 3                 50       1
-==============================================================
- Total Teams: 3
-==============================================================
-```
-
-The new design provides:
-
-* Clear title
-* Rank column
-* Team ID
-* Team Name
-* Score
-* Mission count
-* Total team count
-* Clear visual separation
-
----
-
-# Current System Status
-
-The current system includes:
-
-* [x] Team registration
-* [x] Team ID input
-* [x] Team name input
-* [x] Mission point recording
-* [x] Mission point validation from 1 to 100
-* [x] Team searching
-* [x] Team Profile overlay
-* [x] Team not found handling
-* [x] Team removal
-* [x] Leaderboard sorting
-* [x] Leaderboard overlay
-* [x] Rank display
-* [x] Score display
-* [x] Mission count display
-* [x] Total team count
-* [x] Input validation
-* [x] Error handling
-* [x] File loading
-* [x] File saving
-* [x] Dynamic memory management
-* [x] Memory cleanup
-* [x] Git version control
-* [x] GitHub repository
-* [x] `.gitignore`
-* [x] Detailed project documentation
-
----
-
-# Project Development Updates
-
-The project has been developed incrementally.
-
-Important development stages include:
-
-1. Initial project development.
-2. Team management functionality.
-3. Team registration.
-4. Mission point recording.
-5. Input validation.
-6. Team searching.
-7. Team removal.
-8. Team Profile interface improvement.
-9. Leaderboard interface improvement.
-10. `.gitignore` configuration.
-11. README documentation update.
-12. GitHub synchronization.
-
-Each major change can be stored as a Git commit.
-
----
-
-# Git Commit History Highlights
-
-The project has been updated through multiple commits.
-
-Important recent updates include:
-
-```text
-Add gitignore for build and backup files
-```
-
-This added the `.gitignore` configuration.
-
-```text
-Improve team profile display
-```
-
-This improved Option `3` with the Team Profile overlay.
-
-```text
-Improve leaderboard display
-```
-
-This improved Option `5` with the formatted Leaderboard overlay.
-
-```text
-Update README documentation
-```
-
-This updated the project documentation to match the current system.
-
----
-
-# Repository Synchronization
+1. Structures
 
 The project uses:
 
-```text
-main
-```
+typedef struct {
+    int id;
+    char name[40];
+    int score;
+    int missions;
+} Team;
 
-as the primary branch.
+This groups related information into one data structure.
 
-The local branch is connected to:
+2. Functions
 
-```text
-origin/main
-```
+The project is divided into multiple functions, including:
 
-After pushing changes, Git can confirm synchronization with:
+UX()
+ensureCapacity()
+cleanup()
+findTeamIndex()
+addTeam()
+recordMission()
+deleteTeam()
+sortLeaderboard()
+displayTeams()
+loadTeams()
+saveTeams()
 
-```text
-git status
-```
+Using functions makes the program easier to organize and maintain.
 
-Expected clean result:
+3. Dynamic Memory
 
-```text
-On branch main
-Your branch is up to date with 'origin/main'.
+The project uses:
 
-nothing to commit, working tree clean
-```
+malloc/realloc/free
 
----
+through the C standard library functions used in the program.
 
-# Recommended Development Workflow
+Dynamic memory allows the team storage capacity to grow when more teams are registered.
 
-When making future changes, use the following process.
+4. Searching
 
-## Step 1 — Make the Code Change
+The function:
 
-Edit the required source file.
+findTeamIndex()
 
----
+searches for a team by its ID.
 
-## Step 2 — Save the File
+5. Sorting
 
-Save the file in Visual Studio Code using:
+The function:
 
-```text
-Ctrl + S
-```
+sortLeaderboard()
 
----
+sorts teams according to their score.
 
-## Step 3 — Compile
+The implementation uses nested loops and record swapping.
 
-```text
-g++ main.cpp -o integration.exe
-```
+6. File Handling
 
----
+The project uses:
 
-## Step 4 — Test
+fopen()
+fscanf()
+fprintf()
+fclose()
 
-```text
-.\integration.exe
-```
+to read and write persistent team data.
 
-Test the changed functionality.
+7. Input Validation
 
----
+The program validates user input before modifying system data.
 
-## Step 5 — Check Git
+This reduces the possibility of invalid team records or invalid scores being stored.
 
-```text
-git status
-```
+8. String Handling
 
----
+The program uses string and C-string operations such as:
 
-## Step 6 — Review the Difference
+string
+strlen()
+strncpy()
+strchr()
 
-```text
-git diff
-```
+to process and validate team names.
 
----
+9. Exception Handling for Numeric Input
 
-## Step 7 — Stage the Changed File
+The program uses:
 
-For `main.cpp`:
+stoi()
 
-```text
-git add main.cpp
-```
+together with exception handling to safely process numeric input entered as strings.
 
-For `README.md`:
+This helps detect invalid numeric input such as letters or incomplete numeric values.
 
-```text
-git add README.md
-```
+System Architecture
 
----
+The program can be viewed as several logical components.
 
-## Step 8 — Check Staged Changes
-
-```text
-git status
-```
-
-Confirm that the correct file appears under:
-
-```text
-Changes to be committed:
-```
-
----
-
-## Step 9 — Commit
-
-Example:
-
-```text
-git commit -m "Improve leaderboard display"
-```
-
-Use a clear message describing the change.
-
----
-
-## Step 10 — Push
-
-```text
-git push origin main
-```
-
----
-
-## Step 11 — Final Verification
-
-```text
-git status
-```
-
-The expected result is:
-
-```text
-Your branch is up to date with 'origin/main'.
-
-nothing to commit, working tree clean
-```
-
----
-
-# Important Commands Reference
-
-## Compile
-
-```text
-g++ main.cpp -o integration.exe
-```
-
-## Run
-
-```text
-.\integration.exe
-```
-
-## Check Compiler Version
-
-```text
-g++ --version
-```
-
-## Check Git Status
-
-```text
-git status
-```
-
-## Review All Changes
-
-```text
-git diff
-```
-
-## Review Main Source Changes
-
-```text
-git diff -- main.cpp
-```
-
-## Review README Changes
-
-```text
-git diff -- README.md
-```
-
-## Stage Main Source
-
-```text
-git add main.cpp
-```
-
-## Stage README
-
-```text
-git add README.md
-```
-
-## Commit
-
-```text
-git commit -m "Your commit message"
-```
-
-## Push
-
-```text
-git push origin main
-```
-
-## Pull with Rebase
-
-```text
-git pull --rebase origin main
-```
-
----
-
-# Quick User Guide
-
-For a quick overview:
-
-```text
-1 → Register a team
-2 → Record mission points
-3 → Find a team / Team Profile
-4 → Remove a team
-5 → Show leaderboard
-6 → Save and exit
-```
-
----
-
-# Quick Testing Guide
-
-To test the main features:
-
-### Test Option 1
-
-Register a team:
-
-```text
+                 CAMPUS MISSION TRACKER
+                          |
+          +---------------+---------------+
+          |               |               |
+          v               v               v
+      User Input      Team Management   File Storage
+          |               |               |
+          |          +----+----+          |
+          |          |    |    |          |
+          v          v    v    v          v
+       Menu       Add  Find Delete     teams.txt
+                    |
+                    v
+              Mission Records
+                    |
+                    v
+              Score Updates
+                    |
+                    v
+               Leaderboard
+                    |
+                    v
+              Sorted Display
+Data Lifecycle
+
+The system follows this general data lifecycle:
+
+teams.txt
+    |
+    v
+loadTeams()
+    |
+    v
+Dynamic Memory
+    |
+    +---- Register Team
+    |
+    +---- Record Mission
+    |
+    +---- Find Team
+    |
+    +---- Remove Team
+    |
+    +---- Sort Leaderboard
+    |
+    v
+saveTeams()
+    |
+    v
+teams.txt
+
+This allows information to remain available between program executions.
+
+Error Handling
+
+The system provides messages when an operation cannot be completed.
+
+Examples include:
+
+Invalid choice. Please enter 1-6.
+Error: Team ID must be a valid number.
+Error: Team ID must be a whole number.
+Error: Team ID must be positive.
+Error: Team ID too large (max 99999).
+Error: Team name cannot be empty.
+Error: Team name too long (max 39 characters).
+Error: Team name cannot contain '|' character.
+Team ID already exists.
+Team not found.
+Invalid points. Enter 1-100.
+Memory allocation failed.
+Could not save teams.
+
+These messages help users understand what went wrong and how the input should be corrected.
+
+User Experience Improvements
+
+The console interface was improved to make important information easier to read.
+
+Team Profile
+
+Instead of displaying plain lines such as:
+
+Team found:
 ID: 101
 Name: team 1
-```
+Score: 99
+Missions: 1
 
-### Test Option 2
+the current system uses a formatted profile:
 
-Record points:
+========================================
+             TEAM PROFILE
+========================================
+Team ID      : 101
+Team Name    : team 1
+Total Score  : 99
+Missions     : 1
+Status       : ACTIVE
+========================================
+Leaderboard
 
-```text
-Team ID: 101
-Points: 99
-```
+The leaderboard uses borders and aligned columns:
 
-### Test Option 3
-
-Find the team:
-
-```text
-Team ID: 101
-```
-
-Expected:
-
-```text
-TEAM PROFILE
-```
-
-### Test Option 3 with Invalid ID
-
-Use:
-
-```text
-999
-```
-
-Expected:
-
-```text
-Team not found.
-```
-
-### Test Option 5
-
-View the leaderboard.
-
-Expected:
-
-```text
-LEADERBOARD
-```
-
-### Test Option 6
-
-Save and exit.
-
-Expected:
-
-```text
-Data saved. Goodbye!
-```
-
----
-
-# Example Final Leaderboard
-
-A successful leaderboard example:
-
-```text
 ==============================================================
                      LEADERBOARD
 ==============================================================
@@ -2645,191 +1286,145 @@ Rank     ID       Team Name              Score    Missions
 ==============================================================
  Total Teams: 3
 ==============================================================
-```
 
----
+This makes the ranking information easier to read during a demonstration.
 
-# Example Final Team Profile
+Current Project Status
 
-A successful Team Profile example:
+The current project includes:
 
-```text
-========================================
-             TEAM PROFILE
-========================================
-Team ID      : 101
-Team Name    : team 1
-Total Score  : 99
-Missions     : 1
-Status       : ACTIVE
-========================================
-```
+Team registration
+Team ID validation
+Team name validation
+Duplicate ID checking
+Mission point recording
+Mission point validation
+Team searching
+Team Profile display
+Team deletion
+Leaderboard sorting
+Formatted Leaderboard display
+Dynamic team storage
+Dynamic capacity expansion
+Memory cleanup
+File loading
+File saving
+Persistent team data
+Menu input validation
+Error handling
+Testing documentation
+Project documentation
 
----
+The system has been tested using multiple normal and invalid input scenarios.
 
-# Project Advantages
+Project Demonstration Checklist
 
-The Campus Mission Tracker provides several advantages:
+Before demonstrating the project, check the following:
 
-1. Simple console interface.
-2. Easy team registration.
-3. Automatic score calculation.
-4. Mission count tracking.
-5. Team searching by ID.
-6. Clear Team Profile display.
-7. Automatic leaderboard ranking.
-8. Team removal functionality.
-9. Data persistence using a file.
-10. Input validation.
-11. Error handling.
-12. Dynamic memory management.
-13. Organized source code using functions.
-14. Git version control.
-15. GitHub remote repository.
-16. Clean repository using `.gitignore`.
+Basic Functions
+ Program starts successfully.
+ Main menu is displayed.
+ Team can be registered.
+ Duplicate IDs are rejected.
+ Mission points can be recorded.
+ Team can be found.
+ Team Profile is displayed correctly.
+ Team can be removed.
+ Leaderboard is displayed.
+ Leaderboard ranks teams by score.
+ Data can be saved.
+ Data can be loaded again.
+Validation
+ Invalid menu input is handled.
+ Invalid Team ID is handled.
+ Duplicate Team ID is handled.
+ Invalid Team Name is handled.
+ Invalid mission points are handled.
+ Non-existing team searches are handled.
+ Non-existing team deletion is handled.
+Documentation
+ README is updated.
+ Test evidence is available.
+ Source code is committed.
+ GitHub repository is synchronized.
+Future Improvements
 
----
+Possible future improvements include:
 
-# Possible Future Improvements
+Add user login and authentication.
+Add different user roles such as administrator and normal user.
+Add confirmation before deleting a team.
+Add sorting by both score and mission count.
+Add search by team name.
+Add more detailed team statistics.
+Add mission history instead of only storing the total score.
+Add date and time information for missions.
+Add export functionality to CSV.
+Improve the console interface with colors.
+Add a graphical user interface.
+Add automated unit testing.
+Improve file recovery and backup handling.
+Add stronger data validation.
+Add more detailed reporting features.
+Conclusion
 
-The current system is functional, but it could be expanded in the future.
+The Campus Mission Tracker demonstrates how C++ programming concepts can be combined to build a practical team management system.
 
-Possible improvements include:
+The project provides a complete workflow for:
 
-* Add confirmation before deleting a team.
-* Add more detailed team statistics.
-* Add separate mission records.
-* Add timestamps for missions.
-* Add different mission categories.
-* Add team status management.
-* Add search by team name.
-* Add multiple leaderboard sorting methods.
-* Add export functionality.
-* Improve menu navigation.
-* Add colored console output if appropriate.
-* Add administrator authentication.
-* Add more advanced file storage.
-* Add a graphical user interface in a future version.
+Register Team
+      ↓
+Record Mission
+      ↓
+Update Score
+      ↓
+Find Team
+      ↓
+View Team Profile
+      ↓
+Rank Teams
+      ↓
+View Leaderboard
+      ↓
+Save Data
 
-These are possible future improvements and are not required for the current version.
+The project demonstrates the use of:
 
----
+Structures
+Functions
+Dynamic memory
+Searching
+Sorting
+File handling
+String processing
+Input validation
+Exception handling
+Memory cleanup
 
-# Project Learning Outcomes
+The formatted Team Profile and Leaderboard also provide a clearer user experience for demonstrations.
 
-Through this project, the developer practices:
+GitHub Repository
 
-* C++ syntax
-* Variables
-* Data types
-* Structures
-* Functions
-* Arrays
-* Pointers
-* Dynamic memory
-* Searching algorithms
-* Sorting algorithms
-* File handling
-* Input validation
-* Error handling
-* Program design
-* Console UI design
-* Debugging
-* Testing
-* Git
-* GitHub
-* Documentation
+Project repository:
 
----
+https://github.com/khev-gt/MINI-PROJECT
+Final Project Status
+==============================================================
+                 CAMPUS MISSION TRACKER
+==============================================================
 
-# Conclusion
+System Status : COMPLETED
+Language      : C++
+Interface     : Console
+Data Storage  : teams.txt
+Team Storage  : Dynamic Memory
+Leaderboard   : Implemented
+Team Profile  : Implemented
+Validation    : Implemented
+File Handling : Implemented
+Testing       : Completed
+Documentation : Completed
 
-The **Campus Mission Tracker** is a functional C++ console application for managing campus mission teams and their performance.
+==============================================================
 
-The system provides a complete set of team-management operations:
-
-* Register teams
-* Record mission points
-* Find teams
-* Display Team Profiles
-* Remove teams
-* Rank teams
-* Display the Leaderboard
-* Save team information
-* Load saved information
-
-The project demonstrates important C++ programming concepts including:
-
-* Structures
-* Functions
-* Searching
-* Sorting
-* Dynamic memory management
-* File handling
-* Input validation
-* Error handling
-* Memory cleanup
-
-The updated **TEAM PROFILE** and **LEADERBOARD** overlays improve the clarity and usability of the console interface while keeping the system simple and easy to operate.
-
-The project is maintained using Git and GitHub, with a `.gitignore` configuration to keep generated and temporary files out of the repository.
-
----
-
-# Final Project Status
-
-**Campus Mission Tracker — Completed, Tested, and Updated.**
-
-Current major interface updates:
-
-```text
-Option 3 → TEAM PROFILE
-Option 5 → LEADERBOARD
-```
-
-Current project files:
-
-```text
-main.cpp
-teams.txt
-README.md
-.gitignore
-```
-
-Git branch:
-
-```text
-main
-```
-
-Remote branch:
-
-```text
-origin/main
-```
-
-GitHub repository:
-
-```text
-https://github.com/khev-gt/MINI-PROJECT.git
-```
-
-The latest project version has been committed and pushed to GitHub.
-
-A clean Git status should show:
-
-```text
-On branch main
-Your branch is up to date with 'origin/main'.
-
-nothing to commit, working tree clean
-```
-
----
-
-# End of README
-
-**Campus Mission Tracker**
-
-*A C++ Team Management and Mission Tracking System.*
-
+Campus Mission Tracker — C++ Team Management and Mission Tracking System
