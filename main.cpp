@@ -289,29 +289,30 @@ void displayTeams() {
     sortLeaderboard();
 
     cout << "\n";
+    cout << "==============================================================\n";
+    cout << "                     LEADERBOARD\n";
+    cout << "==============================================================\n";
     cout << left
-         << setw(6) << "Rank"
-         << setw(6) << "ID"
-         << setw(29) << "Name"
-         << setw(7) << "Score"
-         << "Missions\n";
-
-    cout << left
-         << setw(6) << "----"
-         << setw(6) << "----"
-         << setw(29) << "---------------------------"
-         << setw(7) << "-----"
-         << "--------\n";
+        << setw(9) << "Rank"
+        << setw(9) << "ID"
+        << setw(23) << "Team Name"
+        << setw(9) << "Score"
+        << "Missions\n";
+    cout << "--------------------------------------------------------------\n";
 
     for (int i = 0; i < teamSize; i++) {
         cout << left
-             << setw(6) << (i + 1)
-             << setw(6) << teams[i].id
-             << setw(29) << teams[i].name
-             << setw(7) << teams[i].score
-             << teams[i].missions
-             << "\n";
+            << setw(9) << (i + 1)
+            << setw(9) << teams[i].id
+            << setw(23) << teams[i].name
+            << setw(9) << teams[i].score
+            << teams[i].missions
+            << "\n";
     }
+
+    cout << "==============================================================\n";
+    cout << " Total Teams: " << teamSize << "\n";
+    cout << "==============================================================\n";
 }
 
 
