@@ -1,19 +1,3 @@
-Pasted text(3).txt
-Document
-here 
-Pasted markdown.md
-File
-Bro still doing the same again and again can you look at the last one again ?
-
-can you ? i just copy and past from you broooooooo0oo
-
-
-
-
-YES bro 😭. Here is the whole README, rebuilt in the same detailed style as your previous one, but with the current updated Option 3 and Option 5 system.
-
-Copy everything below and replace the entire contents of README.md.
-
 # Campus Mission Tracker
 
 ## Project Overview
