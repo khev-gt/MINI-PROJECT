@@ -476,7 +476,13 @@ int main() {
             cout << "Enter team name: ";
             getline(cin, name);
 
+            int before = teamSize;
+
             addTeam(id, name);
+
+            if (teamSize > before) {
+                cout << "Team registered successfully.\n";
+            }
 
         }
         else if (choice == 2) {
