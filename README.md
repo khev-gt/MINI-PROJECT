@@ -111,8 +111,8 @@ Mission points must be between:
 
 When valid points are entered:
 
-The team's total score increases.
-The team's mission count increases by 1.
+- The team's total score increases.
+- The team's mission count increases by `1`.
 
 Example:
 
@@ -966,7 +966,7 @@ Previously saved teams are loaded.
 Their scores remain available.
 Their mission counts remain available.
 How to Compile and Run
-Requirements
+## Requirements
 
 You need:
 
@@ -976,7 +976,26 @@ The project files
 
 A compiler such as g++ can be used.
 
-Compile
+## Prerequisites
+
+- **Compiler:** GCC/G++ with C++11 or later support
+- **Operating System:** Windows 10/11, Linux, or macOS
+- **Terminal:** PowerShell, Command Prompt, or a Unix terminal
+- **Build Tool:** `g++`
+- **Storage:** Local file system for `teams.txt`
+
+### Standard Libraries Used
+
+The project uses standard C/C++ libraries required by the implementation, including:
+
+- `<iostream>`
+- `<string>`
+- `<cstdio>`
+- `<cstdlib>`
+- `<cstring>`
+- `<iomanip>`
+
+## Compile
 
 Open PowerShell inside the project folder:
 
@@ -1047,7 +1066,7 @@ Maintaining ensureCapacity().
 Maintaining cleanup().
 4. Leng Sakda
 
-Role: UX
+Role: UX/UI Designer
 
 Responsibilities include:
 
