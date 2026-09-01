@@ -556,11 +556,16 @@ int main() {
                 cout << "Team not found.\n";
             }
             else {
-                cout << "\nTeam found:\n";
-                cout << "ID: " << teams[index].id << "\n";
-                cout << "Name: " << teams[index].name << "\n";
-                cout << "Score: " << teams[index].score << "\n";
-                cout << "Missions: " << teams[index].missions << "\n";
+                cout << "\n";
+                cout << "========================================\n";
+                cout << "             TEAM PROFILE\n";
+                cout << "========================================\n";
+                cout << "Team ID      : " << teams[index].id << "\n";
+                cout << "Team Name    : " << teams[index].name << "\n";
+                cout << "Total Score  : " << teams[index].score << "\n";
+                cout << "Missions     : " << teams[index].missions << "\n";
+                cout << "Status       : ACTIVE\n";
+                cout << "========================================\n";
             }
         }
         else if (choice == 4) {
